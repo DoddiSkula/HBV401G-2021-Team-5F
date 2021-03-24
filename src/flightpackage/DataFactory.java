@@ -24,6 +24,7 @@ public class DataFactory {
             e.printStackTrace();
         }
     }
+
     public ObservableList<User> getUsers() {
         ObservableList<User> users = FXCollections.observableArrayList();
         User user1 = new User( /*kennitala:*/ 1, /*name*/ "Hannes",  /*email*/ "hannes@ikea.is");
