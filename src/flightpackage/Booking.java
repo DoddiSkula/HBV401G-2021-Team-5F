@@ -1,4 +1,4 @@
-package sample;
+package flightpackage;
 
 public class Booking {
     private Flight flight;

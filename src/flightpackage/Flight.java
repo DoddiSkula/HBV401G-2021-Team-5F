@@ -1,4 +1,4 @@
-package sample;
+package flightpackage;
 
 public class Flight {
     private int id;

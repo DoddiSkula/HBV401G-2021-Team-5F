@@ -1,4 +1,4 @@
-package sample;
+package flightpackage;
 
 public class Seat {
     private int SeatID;

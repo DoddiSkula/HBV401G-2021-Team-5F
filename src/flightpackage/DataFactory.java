@@ -1,4 +1,4 @@
-package sample;
+package flightpackage;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +17,7 @@ public class DataFactory {
     String DATABASE_URL;
 
     public DataFactory() {
-        File directory = new File("./src/sql");
+        File directory = new File("./src/database");
         try {
             DATABASE_URL = "jdbc:sqlite:" + directory.getCanonicalPath() + "/flight.db";
         } catch (IOException e) {
@@ -44,15 +44,15 @@ public class DataFactory {
         user1.setBookings(bookings1);
 
         ArrayList<Booking> bookings2 = new ArrayList<>();
-        bookings2.add(new Booking(flights.get(4), user2, seats.get(3)));
+        bookings2.add(new Booking(flights.get(1), user2, seats.get(3)));
         user2.setBookings((bookings2));
 
         ArrayList<Booking> bookings3 = new ArrayList<>();
-        bookings3.add(new Booking(flights.get(5), user3, seats.get(7)));
+        bookings3.add(new Booking(flights.get(2), user3, seats.get(7)));
         user3.setBookings((bookings3));
 
         ArrayList<Booking> bookings4 = new ArrayList<>();
-        bookings4.add(new Booking(flights.get(2), user4, seats.get(6)));
+        bookings4.add(new Booking(flights.get(1), user4, seats.get(6)));
         user4.setBookings((bookings4));
 
         users.add(user1);

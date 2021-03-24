@@ -1,4 +1,4 @@
-package sample;
+package flightpackage;
 
 
 import javafx.collections.FXCollections;
@@ -15,9 +15,7 @@ import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class SearchController implements Initializable {
