@@ -1,47 +1,62 @@
 package flightpackage;
 
 public class Seat {
-    private int SeatID;
+    private int flight_id;
+    private int seatID;
     private boolean isAvailable;
-    private boolean FirstClass;
-    private boolean Emergency;
+    private boolean isFirstClass;
+    private boolean isEmergency;
 
-    public Seat(int seatID, boolean isAvailable, boolean firstClass, boolean emergency) {
-        SeatID = seatID;
+    public Seat(int flight_id, int seatID, boolean isAvailable, boolean isFirstClass, boolean isEmergency) {
+        this.flight_id = flight_id;
+        this.seatID = seatID;
         this.isAvailable = isAvailable;
-        FirstClass = firstClass;
-        Emergency = emergency;
+        this.isFirstClass = isFirstClass;
+        this.isEmergency = isEmergency;
     }
 
+    public int getFlight_id() {
+        return flight_id;
+    }
+
+    public void setFlight_id(int flight_id) { this.flight_id = flight_id; }
+
     public int getSeatID() {
-        return SeatID;
+        return seatID;
     }
 
     public void setSeatID(int seatID) {
-        SeatID = seatID;
+        this.seatID = seatID;
     }
 
     public boolean isAvailable() {
         return isAvailable;
     }
 
-    public void setAvailable(boolean available) {
-        isAvailable = available;
+    public void setAvailable(boolean isAvailable) {
+        this.isAvailable = isAvailable;
     }
 
     public boolean isFirstClass() {
-        return FirstClass;
+        return isFirstClass;
     }
 
-    public void setFirstClass(boolean firstClass) {
-        FirstClass = firstClass;
+    public void setFirstClass(boolean isFirstClass) {
+        this.isFirstClass = isFirstClass;
     }
 
     public boolean isEmergency() {
-        return Emergency;
+        return isEmergency;
     }
 
-    public void setEmergency(boolean emergency) {
-        Emergency = emergency;
+    public void setEmergency(boolean isEmergency) { this.isEmergency = isEmergency; }
+
+    @Override
+    public String toString() {
+         return "flight_id: " + flight_id + "\t" +
+                "seatID: " + seatID + "\t" +
+                "isAvailable: " + isAvailable + "\t" +
+                "isFirstClass: " + isFirstClass + "\t" +
+                "isEmergency: " + isEmergency + "\n";
     }
 }

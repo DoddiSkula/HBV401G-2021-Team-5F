@@ -55,6 +55,10 @@ public class SearchController implements Initializable {
         departureLocationBox.setItems(Departure_LocationsList);
     }
 
+    // searchByDeparture
+
+
+    // searchByArrival
 
 
 }

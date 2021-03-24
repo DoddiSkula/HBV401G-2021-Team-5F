@@ -11,25 +11,6 @@ public class Flight {
     private String airline;
     private boolean mealService;
 
-    @Override
-    public String toString() {
-        String s = "Flugfélag:  " + airline +
-                    "\nFrá: " + arrivalLocation + "\t\t Til: " + departureLocation +
-                    "\t\t Verð: " + price + "kr." + "\n" +
-                    departureTime + "\t\t " + arrivalTime + "\n\n";
-
-        String s2 = "id: " + id + "\t" +
-                    "departureLocation: " + departureLocation + "\t" +
-                    "arrivalLocation: " + arrivalLocation + "\t" +
-                    "departureTime: " + departureTime + "\t" +
-                    "arrivalTime: " + arrivalTime + "\t" +
-                    "flightDate: " + flightDate + "\t" +
-                    "price: " + price + "\t" +
-                    "airline: " + airline + "\t" +
-                    "mealService: " + mealService + "\n";
-        return s2;
-    }
-
     public Flight(Integer id, String departureLocation, String arrivalLocation, String departureTime, String arrivalTime, String flightDate, int price, String airline, boolean mealService) {
         this.id = id;
         this.departureLocation = departureLocation;
@@ -106,6 +87,25 @@ public class Flight {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        String s = "Flugfélag:  " + airline +
+                "\nFrá: " + arrivalLocation + "\t\t Til: " + departureLocation +
+                "\t\t Verð: " + price + "kr." + "\n" +
+                departureTime + "\t\t " + arrivalTime + "\n\n";
+
+        String s2 = "id: " + id + "\t" +
+                "departureLocation: " + departureLocation + "\t" +
+                "arrivalLocation: " + arrivalLocation + "\t" +
+                "departureTime: " + departureTime + "\t" +
+                "arrivalTime: " + arrivalTime + "\t" +
+                "flightDate: " + flightDate + "\t" +
+                "price: " + price + "\t" +
+                "airline: " + airline + "\t" +
+                "mealService: " + mealService + "\n";
+        return s2;
     }
 
 }
