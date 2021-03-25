@@ -80,8 +80,8 @@ public class SearchController implements Initializable {
 
         // wrap the observable list in a filtered list
         FilteredList<Flight> filteredData = new FilteredList<>(fluglisti, b -> true);
-
-        departureLocationBox.accessibleTextProperty().addlistener((observable, oldValue, newValue) -> {
+        // search fallið í rauninni er að reyna að fá það til þess að sækja gögn úr choice box og filtera eftir texta gildi
+        departureLocationBox.accessibleTextProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(flight -> {
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
@@ -97,10 +97,11 @@ public class SearchController implements Initializable {
             });
         });
 
-
+     //þarf eitthvað að fixa þetta
         SortedList<Flight> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(fligthsListViews.comparatorProperty());
-        fligthsListViews.setItems(sortedData);
+       // sortedData.comparatorProperty().bind(fligthsListViews.comparatorProperty());
+     //   fligthsListViews.setItems(sortedData);
+
     }
 
     }
