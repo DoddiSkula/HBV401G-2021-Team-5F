@@ -3,29 +3,24 @@ package flightpackage;
 import java.util.ArrayList;
 
 public class User {
-    private int kennitala;
-    private String email;
     private String name;
+    private String email;
+    private String password;
     private ArrayList<Booking> bookings;
 
-    @Override
-    public String toString(){
-        return name;
-    }
-
-    public User(int kennitala, String name, String email) {
-        this.kennitala = kennitala;
+    public User(String name, String email, String password) {
         this.email = email;
         this.name = name;
+        this.password = password;
         this.bookings = new ArrayList<>();
     }
 
-    public int getKennitala() {
-        return kennitala;
+    public String getPassword() {
+        return password;
     }
 
-    public void setKennitala(int kennitala) {
-        this.kennitala = kennitala;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getEmail() {
@@ -50,6 +45,11 @@ public class User {
 
     public void setBookings(ArrayList<Booking> bookings) {
         this.bookings = bookings;
+    }
+
+    @Override
+    public String toString(){
+        return "Name: " + name + "\t" + "Email: " + email;
     }
 }
 

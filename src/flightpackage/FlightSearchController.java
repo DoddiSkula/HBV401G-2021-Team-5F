@@ -24,7 +24,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SearchController implements Initializable {
+public class FlightSearchController implements Initializable {
 
     ObservableList<String> Departure_LocationsList = FXCollections.observableArrayList(" ","REK","EGS","AKR","IFJ","VEY","KEF");
     ObservableList<String> Arrival_LocationsList = FXCollections.observableArrayList(" ","REK","EGS","AKR","IFJ","VEY","KEF");
@@ -60,11 +60,8 @@ public class SearchController implements Initializable {
     }
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            fluglisti = dataFactory.getFlights();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        fluglisti = dataFactory.getFlights("%", "%", "%");
+
         arrivalLocationBox.setItems(Arrival_LocationsList);
         departureLocationBox.setItems(Departure_LocationsList);
         IdTableView.setCellValueFactory(new PropertyValueFactory<>("Id"));
@@ -104,12 +101,35 @@ public class SearchController implements Initializable {
 
     }
 
+    /**
+     * Leitar af flugi eftir attributum
+     * @param departureLocation brottfararstaður, departureLocation = "%" ef ekki á að leita eftir
+     * @param arrivalLocation komustaður, arrivalLocation = "%" ef ekki á að leita eftir
+     * @param flightDate dagsetning (ár-mánuður-dagsetning), flightDate = "%" ef ekki á að leita eftir
+     * @return listi af flugum
+     */
+    public ObservableList<Flight> searchByAttribute(String departureLocation, String arrivalLocation, String flightDate) {
+        return dataFactory.getFlights(departureLocation, arrivalLocation, flightDate);
     }
 
-    // searchByDeparture
+    public ObservableList<Flight> filterByAttribute() {
+        // TODO
+        return null;
+    }
+
+    public static void main(String[] args) {
+        FlightSearchController searcher = new FlightSearchController();
+
+        // Dæmi um að leita eftir flugi
+        ObservableList<Flight> searchedFlights = searcher.searchByAttribute("REY", "%", "%");
+        // Prenta útkomu
+        for(Flight flight: searchedFlights) {
+            System.out.println(flight);
+        }
+    }
+}
 
 
-    // searchByArrival
 
 
 

@@ -35,7 +35,7 @@ public class SceneController implements Initializable{
     private ObservableList<User> users = FXCollections.observableArrayList();
 
     public void addButtonOnActivity(ActionEvent event){
-        users.add(new User(0, usernameTextField.getText(), emailTextField.getText()));
+        users.add(new User(usernameTextField.getText(), emailTextField.getText(), "123"));
     }
 
     public void changeScreenButtonPushed(ActionEvent event) throws IOException
