@@ -1,6 +1,5 @@
 package flightpackage;
 
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -15,39 +14,31 @@ import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-
-
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class FlightSearchController implements Initializable {
+    @FXML public TableView<Flight> fligthsListViews;
+    @FXML private ChoiceBox departureLocationBox;
+    @FXML private ChoiceBox arrivalLocationBox;
+    @FXML private TableColumn<Flight, Integer> IdTableView;
+    @FXML private TableColumn<Flight, String> DepartureTableView;
+    @FXML private TableColumn<Flight, String> ArrivalTableView;
+    @FXML private TableColumn<Flight, String> DepartureTimeTableView;
+    @FXML private TableColumn<Flight, String> ArrivalTimeTableView;
+    @FXML private TableColumn<Flight, String> DateTableView;
+    @FXML private TableColumn<Flight, Integer> PriceTableView;
+    @FXML private TableColumn<Flight, String> AirlineTableView;
+    @FXML private TableColumn<Flight, Boolean> MealTableView;
 
-    ObservableList<String> Departure_LocationsList = FXCollections.observableArrayList(" ","REK","EGS","AKR","IFJ","VEY","KEF");
-    ObservableList<String> Arrival_LocationsList = FXCollections.observableArrayList(" ","REK","EGS","AKR","IFJ","VEY","KEF");
-    @FXML
-    public TableView<Flight> fligthsListViews;
-    @FXML
-    private ChoiceBox departureLocationBox;
-    @FXML
-    private ChoiceBox arrivalLocationBox;
-    @FXML   private TableColumn<Flight, String> IdTableView;
-    @FXML   private TableColumn<Flight, String> DepartureTableView;
-    @FXML   private TableColumn<Flight, String> ArrivalTableView;
-    @FXML   private TableColumn<Flight, String> DepartureTimeTableView;
-    @FXML   private TableColumn<Flight, String> ArrivalTimeTableView;
-    @FXML   private TableColumn<Flight, String> DateTableView;
-    @FXML   private TableColumn<Flight, String> PriceTableView;
-    @FXML   private TableColumn<Flight, String> AirlineTableView;
-    @FXML   private TableColumn<Flight, String> MealTableView;
-
-    private DataFactory dataFactory = new DataFactory();
-
+    private final DataFactory dataFactory = new DataFactory();
     public ObservableList<Flight> fluglisti = FXCollections.observableArrayList();
 
+    ObservableList<String> Departure_LocationsList = FXCollections.observableArrayList("","REY","EGS","AEY","IFJ","VEY","KEF");
+    ObservableList<String> Arrival_LocationsList = FXCollections.observableArrayList("","REY","EGS","AEY","IFJ","VEY","KEF");
 
     public void changeScreenButtonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("scene.fxml"));
@@ -64,17 +55,21 @@ public class FlightSearchController implements Initializable {
 
         arrivalLocationBox.setItems(Arrival_LocationsList);
         departureLocationBox.setItems(Departure_LocationsList);
-        IdTableView.setCellValueFactory(new PropertyValueFactory<>("Id"));
-        DepartureTableView.setCellValueFactory(new PropertyValueFactory<>("Frá"));
-        ArrivalTableView.setCellValueFactory(new PropertyValueFactory<>("Til"));
-        DepartureTimeTableView.setCellValueFactory(new PropertyValueFactory<>("Brottför"));
-        ArrivalTimeTableView.setCellValueFactory(new PropertyValueFactory<>("Koma"));
-        DateTableView.setCellValueFactory(new PropertyValueFactory<>("Dagur"));
-        PriceTableView.setCellValueFactory(new PropertyValueFactory<>("Verð"));
-        AirlineTableView.setCellValueFactory(new PropertyValueFactory<>("Flugfélag"));
-        MealTableView.setCellValueFactory(new PropertyValueFactory<>("Matur"));
 
+        IdTableView.setCellValueFactory(new PropertyValueFactory<>("id"));
+        DepartureTableView.setCellValueFactory(new PropertyValueFactory<>("departureLocation"));
+        ArrivalTableView.setCellValueFactory(new PropertyValueFactory<>("arrivalLocation"));
+        DepartureTimeTableView.setCellValueFactory(new PropertyValueFactory<>("departureTime"));
+        ArrivalTimeTableView.setCellValueFactory(new PropertyValueFactory<>("arrivalTime"));
+        DateTableView.setCellValueFactory(new PropertyValueFactory<>("flightDate"));
+        PriceTableView.setCellValueFactory(new PropertyValueFactory<>("price"));
+        AirlineTableView.setCellValueFactory(new PropertyValueFactory<>("airline"));
+        MealTableView.setCellValueFactory(new PropertyValueFactory<>("mealService"));
 
+        fligthsListViews.setItems(fluglisti);
+        fligthsListViews.getColumns().setAll(IdTableView, DepartureTableView, ArrivalTableView, DepartureTimeTableView, ArrivalTimeTableView, DateTableView, PriceTableView, AirlineTableView, MealTableView);
+
+        /*
         // wrap the observable list in a filtered list
         FilteredList<Flight> filteredData = new FilteredList<>(fluglisti, b -> true);
         // search fallið í rauninni er að reyna að fá það til þess að sækja gögn úr choice box og filtera eftir texta gildi
@@ -94,10 +89,11 @@ public class FlightSearchController implements Initializable {
             });
         });
 
-     //þarf eitthvað að fixa þetta
-        SortedList<Flight> sortedData = new SortedList<>(filteredData);
-       // sortedData.comparatorProperty().bind(fligthsListViews.comparatorProperty());
-     //   fligthsListViews.setItems(sortedData);
+        //þarf eitthvað að fixa þetta
+         SortedList<Flight> sortedData = new SortedList<>(filteredData);
+         sortedData.comparatorProperty().bind(fligthsListViews.comparatorProperty());
+         fligthsListViews.setItems(sortedData);
+         */
 
     }
 
