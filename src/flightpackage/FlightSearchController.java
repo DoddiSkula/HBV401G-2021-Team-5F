@@ -103,13 +103,17 @@ public class FlightSearchController implements Initializable {
 
     /**
      * Leitar af flugi eftir attributum
-     * @param departureLocation brottfararstaður, departureLocation = "%" ef ekki á að leita eftir
-     * @param arrivalLocation komustaður, arrivalLocation = "%" ef ekki á að leita eftir
-     * @param flightDate dagsetning (ár-mánuður-dagsetning), flightDate = "%" ef ekki á að leita eftir
+     * @param departureLocation brottfararstaður, departureLocation = null ef ekki á að leita eftir
+     * @param arrivalLocation komustaður, arrivalLocation = null ef ekki á að leita eftir
+     * @param flightDate dagsetning (ár-mánuður-dagsetning), flightDate = null ef ekki á að leita eftir
      * @return listi af flugum
      */
     public ObservableList<Flight> searchByAttribute(String departureLocation, String arrivalLocation, String flightDate) {
-        return dataFactory.getFlights(departureLocation, arrivalLocation, flightDate);
+        String dep = departureLocation == null ? "%" : departureLocation;
+        String arr = arrivalLocation == null ? "%" : arrivalLocation;
+        String date = flightDate == null ? "%" : flightDate;
+
+        return dataFactory.getFlights(dep, arr, date);
     }
 
     public ObservableList<Flight> filterByAttribute() {
@@ -120,8 +124,8 @@ public class FlightSearchController implements Initializable {
     public static void main(String[] args) {
         FlightSearchController searcher = new FlightSearchController();
 
-        // Dæmi um að leita eftir flugi
-        ObservableList<Flight> searchedFlights = searcher.searchByAttribute("REY", "%", "%");
+        // Dæmi um að leita eftir flugum frá Reykjavík
+        ObservableList<Flight> searchedFlights = searcher.searchByAttribute("REY", null, null);
         // Prenta útkomu
         for(Flight flight: searchedFlights) {
             System.out.println(flight);
