@@ -129,12 +129,18 @@ public class DataFactory implements DataFactoryInterface {
      * @param departureLocation brottfararstaður
      * @param arrivalLocation komustaður
      * @param flightDate dagsetning flugs (ár-mánuður-dags)
+     * @param mealService er flug með veitingasölu eða ekki
+     *
      * @return listi af flugum
      */
-    public ObservableList<Flight> getFlights(String departureLocation, String arrivalLocation, String flightDate) {
+    public ObservableList<Flight> getFlights(String departureLocation, String arrivalLocation, String flightDate, Boolean mealService) {
         ObservableList<Flight> flights = FXCollections.observableArrayList();
 
-        String query = "SELECT * FROM flights WHERE departureLocation LIKE ? AND arrivalLocation LIKE ? AND flightDate LIKE ?";
+        String query =  "SELECT * FROM flights WHERE departureLocation LIKE ? AND arrivalLocation LIKE ? AND flightDate LIKE ?";
+
+        if (mealService != null && mealService)  {
+            query = "SELECT * FROM flights WHERE departureLocation LIKE ? AND arrivalLocation LIKE ? AND flightDate LIKE ? AND mealService";
+        }
 
         Connection connection = null;
         try
@@ -184,7 +190,7 @@ public class DataFactory implements DataFactoryInterface {
 
     public static void main(String[] args) throws IOException {
         DataFactory dataFactory = new DataFactory();
-        ObservableList<Flight> flights = dataFactory.getFlights("%", "%", "%");
+        ObservableList<Flight> flights = dataFactory.getFlights("%", "%", "%", null);
         for (Flight flight: flights) {
             System.out.println(flight);
         }

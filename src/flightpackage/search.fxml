@@ -18,7 +18,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <ChoiceBox fx:id="departureLocationBox" prefHeight="28.0" prefWidth="70.0" />
+                        <ChoiceBox fx:id="departureLocationBox" onAction="#searchHandler" prefHeight="28.0" prefWidth="70.0" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" spacing="5.0">
@@ -28,7 +28,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <ChoiceBox fx:id="arrivalLocationBox" prefHeight="28.0" prefWidth="70.0" />
+                        <ChoiceBox fx:id="arrivalLocationBox" onAction="#searchHandler" prefHeight="28.0" prefWidth="70.0" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" spacing="5.0">
@@ -38,12 +38,12 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <DatePicker prefHeight="28.0" prefWidth="115.0" />
+                        <DatePicker fx:id="flightDatePicker" onAction="#searchHandler" prefHeight="28.0" prefWidth="115.0" />
                      </children>
                   </HBox>
                </children>
             </HBox>
-            <CheckBox fx:id="mealService" layoutX="431.0" layoutY="54.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="139.0" text="Matur">
+            <CheckBox fx:id="mealService" layoutX="431.0" layoutY="54.0" mnemonicParsing="false" onAction="#searchHandler" prefHeight="28.0" prefWidth="139.0" text="Matur">
                <font>
                   <Font size="14.0" />
                </font>
