@@ -56,33 +56,6 @@ public class FlightSearchController implements Initializable {
 
         fligthsListViews.setItems(flightList);
         fligthsListViews.getColumns().setAll(IdTableView, DepartureTableView, ArrivalTableView, DepartureTimeTableView, ArrivalTimeTableView, DateTableView, PriceTableView, AirlineTableView, MealTableView);
-
-        /*
-        // wrap the observable list in a filtered list
-        FilteredList<Flight> filteredData = new FilteredList<>(fluglisti, b -> true);
-        // search fallið í rauninni er að reyna að fá það til þess að sækja gögn úr choice box og filtera eftir texta gildi
-        departureLocationBox.accessibleTextProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(flight -> {
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                if (flight.getDepartureLocation().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else if (flight.getArrivalLocation().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else
-                    return false;
-            });
-        });
-
-        //þarf eitthvað að fixa þetta
-         SortedList<Flight> sortedData = new SortedList<>(filteredData);
-         sortedData.comparatorProperty().bind(fligthsListViews.comparatorProperty());
-         fligthsListViews.setItems(sortedData);
-         */
-
     }
 
     /**

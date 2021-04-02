@@ -51,7 +51,7 @@ public class SceneController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        users = dataFactory.getUsers();
+        users = dataFactory.getUsers("%");
         usersListView.setItems(users);
     }
     public void listViewMouseClicked(MouseEvent mouseEvent){

@@ -25,10 +25,10 @@ public class DataFactory implements DataFactoryInterface {
      *
      * @return listi af notendum
      */
-    public ObservableList<User> getUsers() {
+    public ObservableList<User> getUsers(String email) {
         ObservableList<User> users = FXCollections.observableArrayList();
 
-        String query = "select * from users";
+        String query = "SELECT * FROM users WHERE email LIKE ?";
 
         Connection connection = null;
         try
@@ -36,8 +36,9 @@ public class DataFactory implements DataFactoryInterface {
             // create a database connection
             connection = DriverManager.getConnection(DATABASE_URL);
             Statement statement = connection.createStatement();
-
-            ResultSet rs = statement.executeQuery(query);
+            PreparedStatement pstmt = connection.prepareStatement(query);
+            pstmt.setString(1, email);
+            ResultSet rs = pstmt.executeQuery();
             while(rs.next())
             {
                 // read the result set
@@ -66,6 +67,41 @@ public class DataFactory implements DataFactoryInterface {
             }
         }
         return users;
+    }
+
+    public User createUser(String name, String email, String password) {
+        User user = new User(name, email, password);
+
+        String query =  "INSERT INTO users VALUES (?, ?, ?)";
+
+        Connection connection = null;
+        try
+        {
+            connection = DriverManager.getConnection(DATABASE_URL);
+            PreparedStatement pstmt = connection.prepareStatement(query);
+            pstmt.setString(1, name);
+            pstmt.setString(2, email);
+            pstmt.setString(3, password);
+            pstmt.executeUpdate();
+        }
+        catch(SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        finally
+        {
+            try
+            {
+                if(connection != null)
+                    connection.close();
+            }
+            catch(SQLException e)
+            {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+        return user;
     }
 
     /**
@@ -190,20 +226,22 @@ public class DataFactory implements DataFactoryInterface {
 
     public static void main(String[] args) throws IOException {
         DataFactory dataFactory = new DataFactory();
+        /*
         ObservableList<Flight> flights = dataFactory.getFlights("%", "%", "%", null);
         for (Flight flight: flights) {
             System.out.println(flight);
         }
-        /*
+
         ObservableList<Seat> seats = dataFactory.getSeats(1);
         for (Seat seat: seats) {
             System.out.println(seat);
         }
-        ObservableList<User> users = dataFactory.getUsers();
+        */
+        // dataFactory.createUser("test2", "test2@test.com", "1234");
+        ObservableList<User> users = dataFactory.getUsers("%");
         for (User user: users) {
             System.out.println(user);
         }
-        */
 
     }
 }

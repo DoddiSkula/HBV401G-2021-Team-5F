@@ -14,7 +14,7 @@ public class DataFactoryMock implements DataFactoryInterface {
      *
      * @return listi af notendum
      */
-    public ObservableList<User> getUsers() {
+    public ObservableList<User> getUsers(String email) {
         ObservableList<User> users = FXCollections.observableArrayList();
         users.add(new User("Matthias Book", "mb123@hi.is", "12345678"));
         users.add(new User("John Smith", "johnny@hi.is", "12345678"));
