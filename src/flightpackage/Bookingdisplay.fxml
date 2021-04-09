@@ -6,16 +6,22 @@
 
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <center>
+   <left>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="171.0" layoutY="111.0" prefHeight="22.0" prefWidth="37.0" text="User:" />
-            <Label layoutX="171.0" layoutY="141.0" text="Flight:" />
-            <Label layoutX="382.0" layoutY="114.0" text="From:" />
-            <Label layoutX="382.0" layoutY="141.0" text="To:" />
-            <Label layoutX="171.0" layoutY="173.0" text="Airline:" />
-            <Label layoutX="383.0" layoutY="173.0" text="Seat:" />
+            <Label layoutX="83.0" layoutY="72.0" prefHeight="22.0" prefWidth="37.0" text="User:" />
+            <Label layoutX="83.0" layoutY="114.0" text="Flight:" />
+            <Label layoutX="83.0" layoutY="192.0" text="From:" />
+            <Label layoutX="83.0" layoutY="228.0" text="To:" />
+            <Label layoutX="83.0" layoutY="150.0" text="Airline:" />
+            <Label layoutX="83.0" layoutY="265.0" text="Seat:" />
+            <Label fx:id="UserDisplay" layoutX="140.0" layoutY="75.0" prefHeight="17.0" prefWidth="163.0" />
+            <Label fx:id="FlightDsiplay" layoutX="138.0" layoutY="114.0" prefHeight="17.0" prefWidth="163.0" />
+            <Label fx:id="AirlineDisplay" layoutX="138.0" layoutY="150.0" prefHeight="17.0" prefWidth="163.0" />
+            <Label fx:id="FromDisplay" layoutX="138.0" layoutY="192.0" prefHeight="17.0" prefWidth="163.0" />
+            <Label fx:id="ToDisplay" layoutX="140.0" layoutY="228.0" prefHeight="17.0" prefWidth="163.0" />
+            <Label fx:id="SeatDisplay" layoutX="140.0" layoutY="265.0" prefHeight="17.0" prefWidth="163.0" />
          </children>
       </AnchorPane>
-   </center>
+   </left>
 </BorderPane>
