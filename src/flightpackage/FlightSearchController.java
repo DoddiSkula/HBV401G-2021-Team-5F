@@ -88,7 +88,7 @@ public class FlightSearchController implements Initializable {
     }
 
     public void changeScreenButtonPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("scene.fxml"));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("login.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 
         //This line gets the Stage information
