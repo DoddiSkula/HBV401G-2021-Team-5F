@@ -159,6 +159,105 @@ public class DataFactory implements DataFactoryInterface {
     }
 
     /**
+     * Skilar einu sæti
+     *
+     * @param flight_id flugnúmer
+     * @param seatID sætisnúmer
+     * @return sæti
+     */
+    public Seat getSeat(int flight_id, int seatID) {
+        String id = Integer.toString(flight_id);
+        String seatId = Integer.toString(seatID);
+        Seat seat = null;
+
+        String query = "SELECT * FROM seats WHERE flight_id = ? AND seatID = ?";
+
+        Connection connection = null;
+        try
+        {
+            // create a database connection
+            connection = DriverManager.getConnection(DATABASE_URL);
+            PreparedStatement pstmt = connection.prepareStatement(query);
+            pstmt.setString(1, id);
+            pstmt.setString(2, seatId);
+            ResultSet rs = pstmt.executeQuery();
+
+            while(rs.next())
+            {
+                // read the result set
+                seat = new Seat( rs.getInt("flight_id"),
+                        rs.getInt("seatID"),
+                        rs.getBoolean("isAvailable"),
+                        rs.getBoolean("isFirstClass"),
+                        rs.getBoolean("isEmergency"));
+            }
+        }
+        catch(SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        finally
+        {
+            try
+            {
+                if(connection != null)
+                    connection.close();
+            }
+            catch(SQLException e)
+            {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        return seat;
+    }
+
+    /**
+     * Bókar sæti
+     *
+     * @param flight_id flugnúmer
+     * @param seatID sætisnúmer
+     * @param isAvailable laust/frátekið
+     */
+    public void reserveSeat(int flight_id, int seatID, boolean isAvailable) {
+        String flightId = Integer.toString(flight_id);
+        String seatId = Integer.toString(seatID);
+        String availability = Boolean.toString(isAvailable);
+
+        String query = "UPDATE seats SET isAvailable = ? WHERE flight_id = ? AND seatID = ?";
+
+        Connection connection = null;
+        try
+        {
+            // create a database connection
+            connection = DriverManager.getConnection(DATABASE_URL);
+            PreparedStatement pstmt = connection.prepareStatement(query);
+            pstmt.setString(1, availability);
+            pstmt.setString(2, flightId);
+            pstmt.setString(3, seatId);
+            pstmt.executeUpdate();
+        }
+        catch(SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        finally
+        {
+            try
+            {
+                if(connection != null)
+                    connection.close();
+            }
+            catch(SQLException e)
+            {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+    }
+
+    /**
      * Sækir flug eftir leit,
      * parametri = '%' ef ekki á að leita eftir honum.
      *
@@ -231,17 +330,23 @@ public class DataFactory implements DataFactoryInterface {
         for (Flight flight: flights) {
             System.out.println(flight);
         }
-
         ObservableList<Seat> seats = dataFactory.getSeats(1);
         for (Seat seat: seats) {
             System.out.println(seat);
         }
-        */
-        // dataFactory.createUser("test2", "test2@test.com", "1234");
+        dataFactory.createUser("test2", "test2@test.com", "1234");
         ObservableList<User> users = dataFactory.getUsers("%");
         for (User user: users) {
             System.out.println(user);
         }
+        */
+
+        Seat s = dataFactory.getSeat(1,1);
+        System.out.println(s);
+        dataFactory.reserveSeat(1,1,false);
+        Seat s2 = dataFactory.getSeat(1,1);
+        System.out.println(s2);
+
 
     }
 }

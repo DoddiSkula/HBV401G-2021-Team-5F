@@ -7,5 +7,4 @@ public class FlightBookingController {
         // TODO
         return null;
     }
-
 }
