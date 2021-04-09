@@ -104,6 +104,54 @@ public class DataFactory implements DataFactoryInterface {
         return user;
     }
 
+    public ObservableList<Booking> getBookings(String user_email) {
+        ObservableList<Booking> bookings = FXCollections.observableArrayList();
+
+        String query = "SELECT * FROM bookings WHERE user_email LIKE ?";
+
+        Connection connection = null;
+        try
+        {
+            // create a database connection
+            connection = DriverManager.getConnection(DATABASE_URL);
+            Statement statement = connection.createStatement();
+            PreparedStatement pstmt = connection.prepareStatement(query);
+            pstmt.setString(1, user_email);
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next())
+            {
+                // read the result set
+                int flightId = rs.getInt("flight_id");
+                String userEmail = rs.getString("user_email");
+                int seatId = rs.getInt("seat_id");
+
+                Flight flight = getFlightbyID(flightId);
+                ObservableList<User> users = getUsers(userEmail);
+                Seat seat = getSeat(flightId, seatId);
+
+                bookings.add(new Booking(flight, users.get(0), seat));
+            }
+        }
+        catch(SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        finally
+        {
+            try
+            {
+                if(connection != null)
+                    connection.close();
+            }
+            catch(SQLException e)
+            {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+        return bookings;
+    }
+
     /**
      * Sækir öll sæti í tilteknu flugi.
      *
@@ -323,6 +371,57 @@ public class DataFactory implements DataFactoryInterface {
         return flights;
     }
 
+    public Flight getFlightbyID(int flight_id) {
+        String id = Integer.toString(flight_id);
+        Flight flight = null;
+
+        String query =  "SELECT * FROM flights WHERE id = ?";
+
+
+        Connection connection = null;
+        try
+        {
+            // create a database connection
+            connection = DriverManager.getConnection(DATABASE_URL);
+            PreparedStatement pstmt = connection.prepareStatement(query);
+            pstmt.setString(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next())
+            {
+                // read the result set
+                flight = new Flight(
+                        rs.getInt("id"),
+                        rs.getString("departureLocation"),
+                        rs.getString("arrivalLocation"),
+                        rs.getString("departureTime"),
+                        rs.getString("arrivalTime"),
+                        rs.getString("flightDate"),
+                        rs.getInt("price"),
+                        rs.getString("airline"),
+                        rs.getBoolean("mealService")
+                );
+            }
+        }
+        catch(SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        finally
+        {
+            try
+            {
+                if(connection != null)
+                    connection.close();
+            }
+            catch(SQLException e)
+            {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+        return flight;
+    }
+
     public static void main(String[] args) throws IOException {
         DataFactory dataFactory = new DataFactory();
         /*
@@ -339,13 +438,20 @@ public class DataFactory implements DataFactoryInterface {
         for (User user: users) {
             System.out.println(user);
         }
-        */
+
 
         Seat s = dataFactory.getSeat(1,1);
         System.out.println(s);
         dataFactory.reserveSeat(1,1,false);
         Seat s2 = dataFactory.getSeat(1,1);
         System.out.println(s2);
+
+         */
+
+        ObservableList<Booking> bookings = dataFactory.getBookings("%");
+        for (Booking b: bookings) {
+            System.out.println(b);
+        }
 
 
     }
