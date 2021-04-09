@@ -5,15 +5,22 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class FlightBookingController {
+public class FlightBookingController implements Initializable {
+    @FXML
+    public Label FromDisplay;
     private FlightSearchController searchController = new FlightSearchController();
     private FlightUserController userController = new FlightUserController();
     private DataFactory dataFactory = new DataFactory();
@@ -44,6 +51,7 @@ public class FlightBookingController {
 
         booking = createBooking(user, flight, seats);
     }
+
     public void backbuttonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("search.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -54,4 +62,9 @@ public class FlightBookingController {
         window.show();
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        //Flight fluginfo = searchController.getSelectedFlight();
+        //FromDisplay.setText(fluginfo.getDepartureLocation());
+    }
 }

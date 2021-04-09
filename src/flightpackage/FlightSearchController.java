@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
@@ -76,6 +77,13 @@ public class FlightSearchController implements Initializable {
     }
 
     public Flight getSelectedFlight() {
+        Flight flugID = fligthsListViews.getSelectionModel().getSelectedItem();
+
+        if(flugID == null) {
+            return null;
+        }
+        selectedFlight = flugID;
+
         return selectedFlight;
     }
 
@@ -89,13 +97,23 @@ public class FlightSearchController implements Initializable {
         window.show();
     }
     public void bookingbuttonPushed(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("seat.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
+        getSelectedFlight();
 
-        //This line gets the Stage information
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(tableViewScene);
-        window.show();
+        if(selectedFlight == null ) {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText("No flight selected");
+            a.show();
+        }
+        else {
+            System.out.println(selectedFlight.getAirline());
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("seat.fxml"));
+            Scene tableViewScene = new Scene(tableViewParent);
+
+            //This line gets the Stage information
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(tableViewScene);
+            window.show();
+        }
     }
 
     @FXML

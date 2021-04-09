@@ -11,15 +11,10 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="752.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flightpackage.FlightBookingController">
-   <center>
+   <top>
       <AnchorPane prefHeight="338.0" prefWidth="486.0" BorderPane.alignment="CENTER">
          <children>
             <Button layoutX="644.0" layoutY="469.0" mnemonicParsing="false" text="Confirm" />
-            <Label fx:id="FlugIdentity" layoutX="154.0" layoutY="72.0" prefHeight="33.0" prefWidth="404.0" textAlignment="CENTER">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
             <Button layoutX="68.0" layoutY="469.0" mnemonicParsing="false" onAction="#backbuttonPushed" prefHeight="26.0" prefWidth="57.0" text="Back" />
             <GridPane fx:id="SeatGrid" gridLinesVisible="true" layoutX="270.0" layoutY="139.0" prefHeight="252.0" prefWidth="213.0">
               <columnConstraints>
@@ -97,7 +92,32 @@
                   </CheckBox>
                </children>
             </GridPane>
+            <Label layoutX="137.0" layoutY="74.0" text="Flug Frá :">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="270.0" layoutY="74.0" text="Til:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="499.0" layoutY="74.0" text="Flugfélag:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="376.0" layoutY="74.0" text="Klukkan:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="FromDisplay" layoutX="206.0" layoutY="74.0" text="Label">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
-   </center>
+   </top>
 </BorderPane>
