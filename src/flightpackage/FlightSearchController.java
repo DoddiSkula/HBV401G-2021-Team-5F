@@ -34,6 +34,7 @@ public class FlightSearchController implements Initializable {
 
     private final DataFactory dataFactory = new DataFactory();
     public ObservableList<Flight> flightList = FXCollections.observableArrayList();
+    public Flight selectedFlight = null;
 
     ObservableList<String> Departure_LocationsList = FXCollections.observableArrayList("","REY","EGS","AEY","IFJ","VEY","KEF");
     ObservableList<String> Arrival_LocationsList = FXCollections.observableArrayList("","REY","EGS","AEY","IFJ","VEY","KEF");
@@ -72,6 +73,10 @@ public class FlightSearchController implements Initializable {
         String date = flightDate == null || flightDate.equals("") ? "%" : flightDate;
 
         return dataFactory.getFlights(dep, arr, date, meal);
+    }
+
+    public Flight getSelectedFlight() {
+        return selectedFlight;
     }
 
     public void changeScreenButtonPushed(ActionEvent event) throws IOException {

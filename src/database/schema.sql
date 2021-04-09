@@ -25,7 +25,6 @@ CREATE TABLE seats (
 -- BOOKINGS TABLE
 DROP TABLE IF EXISTS bookings;
 CREATE TABLE bookings (
-    passenger_name VARCHAR(265),
     user_email VARCHAR(265),
     flight_id INTEGER,
     seat_id INTEGER
@@ -43,8 +42,8 @@ CREATE TABLE users (
 INSERT INTO users VALUES ("Admin", "admin@example.com", "123");
 
 -- Insert bookings
-INSERT INTO bookings VALUES ("Admin" ,"admin@example.com", 1, 3);
-INSERT INTO bookings VALUES ("Matthias Book","admin@example.com", 1, 4);
+INSERT INTO bookings VALUES ("admin@example.com", 1, 3);
+INSERT INTO bookings VALUES ("admin@example.com", 1, 4);
 
 -- Insert flights
 INSERT INTO flights VALUES (1, 'REY', 'AEY', '11:00', '13:00', date('2021-01-01'), 15000, 'Iceland Air', TRUE);
