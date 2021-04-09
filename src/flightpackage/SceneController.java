@@ -49,6 +49,7 @@ public class SceneController implements Initializable{
         window.show();
     }
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         users = dataFactory.getUsers("%");
