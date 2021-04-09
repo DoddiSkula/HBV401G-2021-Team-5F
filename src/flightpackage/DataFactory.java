@@ -69,6 +69,14 @@ public class DataFactory implements DataFactoryInterface {
         return users;
     }
 
+    /**
+     * Býr til nýjan notanda
+     *
+     * @param name nafn
+     * @param email email
+     * @param password lykilorð
+     * @return notandi
+     */
     public User createUser(String name, String email, String password) {
         User user = new User(name, email, password);
 
@@ -104,6 +112,12 @@ public class DataFactory implements DataFactoryInterface {
         return user;
     }
 
+    /**
+     * Skilar öllum bókunum á tilteknu emaili
+     *
+     * @param user_email email notanda
+     * @return lista af bókunum
+     */
     public ObservableList<Booking> getBookings(String user_email) {
         ObservableList<Booking> bookings = FXCollections.observableArrayList();
 
@@ -150,6 +164,48 @@ public class DataFactory implements DataFactoryInterface {
             }
         }
         return bookings;
+    }
+
+    /**
+     * Býr til nýja bókun
+     *
+     * @param user_email email notanda
+     * @param flight_id flugnúmer
+     * @param seat_id sætisnúmer
+     */
+    public void createBooking(String user_email, int flight_id, int seat_id) {
+        String flightId = Integer.toString(flight_id);
+        String seatId = Integer.toString(seat_id);
+
+        String query =  "INSERT INTO bookings VALUES (?, ?, ?)";
+
+        Connection connection = null;
+        try
+        {
+            connection = DriverManager.getConnection(DATABASE_URL);
+            PreparedStatement pstmt = connection.prepareStatement(query);
+            pstmt.setString(1, user_email);
+            pstmt.setString(2, flightId);
+            pstmt.setString(3, seatId);
+            pstmt.executeUpdate();
+        }
+        catch(SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        finally
+        {
+            try
+            {
+                if(connection != null)
+                    connection.close();
+            }
+            catch(SQLException e)
+            {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
     }
 
     /**
@@ -448,7 +504,9 @@ public class DataFactory implements DataFactoryInterface {
 
          */
 
-        ObservableList<Booking> bookings = dataFactory.getBookings("%");
+        dataFactory.createBooking("admin@example.com", 3,3);
+
+        ObservableList<Booking> bookings = dataFactory.getBookings("admin@example.com");
         for (Booking b: bookings) {
             System.out.println(b);
         }

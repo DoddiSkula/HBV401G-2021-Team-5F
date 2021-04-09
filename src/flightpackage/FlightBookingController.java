@@ -32,11 +32,17 @@ public class FlightBookingController implements Initializable {
         ObservableList<Booking> book = FXCollections.observableArrayList();
         for(int id : seat_id) {
             Seat seat = dataFactory.getSeat(flight.getId(), id);
-            book.add(new Booking(flight, user, seat));
+            Booking currentBooking = new Booking(flight, user, seat);
+
+            // bóka sæti
+            dataFactory.reserveSeat(currentBooking.getFlight().getId(), currentBooking.getSeat().getSeatID(), false);
+
+            // bæta bókun við gagnagrunn
+            dataFactory.createBooking(currentBooking.getUser().getEmail() ,currentBooking.getFlight().getId(), currentBooking.getSeat().getSeatID());
+
+            // bæta bókun við local lista
+            book.add(currentBooking);
         }
-
-        // TODO skrifa í gagnagrunn
-
         return book;
     }
 
