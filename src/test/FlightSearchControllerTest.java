@@ -1,4 +1,4 @@
-package test;
+/*package test;
 
 import flightpackage.Flight;
 import flightpackage.FlightSearchController;
@@ -45,3 +45,5 @@ public class FlightSearchControllerTest {
         assertEquals(0, flights.size());
     }
 }
+
+ */

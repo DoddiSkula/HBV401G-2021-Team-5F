@@ -30,7 +30,7 @@
                   <TextField fx:id="usernameTextField" layoutX="235.0" layoutY="52.0" />
                   <TextField fx:id="emailTextField" layoutX="235.0" layoutY="85.0" />
                   <Button fx:id="addButton" layoutX="332.0" layoutY="128.0" mnemonicParsing="false" onAction="#addButtonOnActivity" text="Áfram" />
-                  <Button layoutX="415.0" layoutY="14.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" text="Button" />
+                  <Button layoutX="381.0" layoutY="14.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" text="Flight Search" />
                </children>
             </AnchorPane>
          </right>

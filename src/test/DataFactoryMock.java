@@ -1,4 +1,4 @@
-package test;
+/*package test;
 
 import flightpackage.DataFactoryInterface;
 import flightpackage.Flight;
@@ -14,7 +14,7 @@ public class DataFactoryMock implements DataFactoryInterface {
      *
      * @return listi af notendum
      */
-    public ObservableList<User> getUsers(String email) {
+/*    public ObservableList<User> getUsers(String email) {
         ObservableList<User> users = FXCollections.observableArrayList();
         users.add(new User("Matthias Book", "mb123@hi.is", "12345678"));
         users.add(new User("John Smith", "johnny@hi.is", "12345678"));
@@ -27,7 +27,7 @@ public class DataFactoryMock implements DataFactoryInterface {
      * @param flight_id flugnúmer
      * @return listi af sætum
      */
-    public ObservableList<Seat> getSeats(int flight_id) {
+/*    public ObservableList<Seat> getSeats(int flight_id) {
         ObservableList<Seat> seats = FXCollections.observableArrayList();
         seats.add(new Seat(1, 1, true, false, false));
         seats.add(new Seat(1, 2, true, false, false));
@@ -46,7 +46,7 @@ public class DataFactoryMock implements DataFactoryInterface {
      *
      * @return listi af flugum
      */
-    public ObservableList<Flight> getFlights(String departureLocation, String arrivalLocation, String flightDate, Boolean mealService) {
+ /*   public ObservableList<Flight> getFlights(String departureLocation, String arrivalLocation, String flightDate, Boolean mealService) {
         ObservableList<Flight> flights = FXCollections.observableArrayList();
         flights.add(new Flight(1, "REY", "AEY", "11:00", "13:00", "2021-01-01", 15000, "Iceland Air", true));
         flights.add(new Flight(2, "REY", "EGS", "11:00", "14:00", "2021-01-01", 22500, "Flugfélag Íslands", true));
@@ -54,3 +54,7 @@ public class DataFactoryMock implements DataFactoryInterface {
         return flights;
     }
 }
+
+
+
+  */
