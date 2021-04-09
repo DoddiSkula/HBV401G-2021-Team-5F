@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -23,24 +24,38 @@ public class FlightUserController implements Initializable{
     @FXML
     private Button modeButton;
     @FXML
-    private Button loginOrNewUserButton;
+    private Button userButton;
     @FXML
     private Label nameFieldLabel;
     @FXML
     private TextField nameTextField;
+    @FXML
+    private TextField passwordTextField;
+    @FXML
+    private TextField emailTextField;
+    @FXML
+    private Label statusLabel;
+    @FXML
+    private Label emailLabel;
+    @FXML
+    private Label passwordLabel;
+    public int mode = 0;
+
 
     public void changeMode(ActionEvent event) throws IOException {
-        if(loginOrNewUserButton.getText().length() == 7){
-            loginOrNewUserButton.setText("Nýskrá");
+        if(mode == 0){
+            userButton.setText("Nýskrá");
             modeButton.setText("Ég á reikning");
             nameFieldLabel.setOpacity(1);
             nameTextField.setOpacity(1);
+            mode = 1;
         }
-        else{
-            loginOrNewUserButton.setText("Innskrá");
+        else if(mode == 1){
+            userButton.setText("Innskrá");
             modeButton.setText("Nýr notandi");
             nameFieldLabel.setOpacity(0);
             nameTextField.setOpacity(0);
+            mode = 0;
         }
     }
 
@@ -97,6 +112,47 @@ public class FlightUserController implements Initializable{
     private ObservableList<User> getUser(String email) {
         String mail = email == null || email.equals("") ? "%" : email;
         return dataFactory.getUsers(mail);
+    }
+
+    public void hideOrShowLoginItems(int show){
+        emailLabel.setOpacity(show);
+        emailTextField.setOpacity(show);
+        emailTextField.setText("");
+        passwordLabel.setOpacity(show);
+        passwordTextField.setOpacity(show);
+        passwordTextField.setText("");
+        nameFieldLabel.setOpacity(0);
+        nameTextField.setOpacity(0);
+        nameTextField.setText("");
+    }
+
+    public void userButtonPressed(ActionEvent event) throws IOException {
+        String email = emailTextField.getText();
+        String password = passwordTextField.getText();
+        String name = nameFieldLabel.getText();
+        if(mode == 0){
+            if(login(email,password)){
+                mode = 2;
+                hideOrShowLoginItems(0);
+                userButton.setText("Útskrá");
+                statusLabel.setText(getLoggedInUser().getName());
+            }
+        }
+        else if (mode == 1){
+            if(register(name,email,password)){
+                mode = 2;
+                hideOrShowLoginItems(0);
+                userButton.setText("Útskrá");
+                statusLabel.setText(getLoggedInUser().getName());
+            }
+        }
+        else if(mode == 2){
+            logout();
+            mode = 0;
+            hideOrShowLoginItems(1);
+            userButton.setText("Innskrá");
+            statusLabel.setText("Enginn notandi skráður inn");
+        }
     }
 
     public static void main(String[] args) {
