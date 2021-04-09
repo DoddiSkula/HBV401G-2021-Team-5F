@@ -88,6 +88,7 @@ public class FlightSearchController implements Initializable {
         window.setScene(tableViewScene);
         window.show();
     }
+
     public void bookingbuttonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("seat.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
