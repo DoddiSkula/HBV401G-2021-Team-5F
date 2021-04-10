@@ -139,7 +139,7 @@ public class FlightUserController implements Initializable{
     public void userButtonPressed(ActionEvent event) throws IOException {
         String email = emailTextField.getText();
         String password = passwordTextField.getText();
-        String name = nameFieldLabel.getText();
+        String name = nameTextField.getText();
         if(mode == 0){
             if(login(email,password)){
                 loginSuccess();
