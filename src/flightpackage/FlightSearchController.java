@@ -61,7 +61,7 @@ public class FlightSearchController implements Initializable {
         fligthsListViews.setItems(flightList);
         fligthsListViews.getColumns().setAll(IdTableView, DepartureTableView, ArrivalTableView, DepartureTimeTableView, ArrivalTimeTableView, DateTableView, PriceTableView, AirlineTableView, MealTableView);
         if(ud.user != null){
-            loginLogoutButton.setText("Útskráning");
+            loginLogoutButton.setText("Minn aðgangur");
             userStatusLabel.setText(ud.user.getName());
         }
     }
