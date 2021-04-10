@@ -32,6 +32,8 @@ public class FlightSearchController implements Initializable {
     @FXML private TableColumn<Flight, Integer> PriceTableView;
     @FXML private TableColumn<Flight, String> AirlineTableView;
     @FXML private TableColumn<Flight, Boolean> MealTableView;
+    @FXML private Label userStatusLabel;
+    @FXML private Button loginLogoutButton;
 
     private final DataFactory dataFactory = new DataFactory();
     public ObservableList<Flight> flightList = FXCollections.observableArrayList();
@@ -58,6 +60,10 @@ public class FlightSearchController implements Initializable {
 
         fligthsListViews.setItems(flightList);
         fligthsListViews.getColumns().setAll(IdTableView, DepartureTableView, ArrivalTableView, DepartureTimeTableView, ArrivalTimeTableView, DateTableView, PriceTableView, AirlineTableView, MealTableView);
+        if(ud.user != null){
+            loginLogoutButton.setText("Útskráning");
+            userStatusLabel.setText(ud.user.getName());
+        }
     }
 
     /**
