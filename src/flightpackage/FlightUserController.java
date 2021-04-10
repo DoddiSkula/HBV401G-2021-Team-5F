@@ -74,6 +74,11 @@ public class FlightUserController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        user = ud.user;
+        if(user != null){
+            statusLabel.setText(ud.user.getName());
+            loginSuccess();
+        }
     }
 
     public Boolean register(String name, String email, String password) {
