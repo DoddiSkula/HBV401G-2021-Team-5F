@@ -16,7 +16,7 @@
    <top>
       <AnchorPane opacity="0.85" prefHeight="127.0" prefWidth="754.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="650.0" layoutY="14.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" text="Login/Logout" />
+            <Button fx:id="loginLogoutButton" layoutX="650.0" layoutY="14.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" text="Innskráning" />
             <HBox layoutX="14.0" layoutY="52.0" prefHeight="31.0" prefWidth="417.0" spacing="20.0">
                <children>
                   <HBox prefHeight="100.0" spacing="5.0">
@@ -56,7 +56,7 @@
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <Label fx:id="userStatusLabel" layoutX="499.0" layoutY="18.0" text="Enginn notandi skráður inn" />
+            <Label fx:id="userStatusLabel" alignment="CENTER_RIGHT" layoutX="483.0" layoutY="18.0" minWidth="160.0" text="Enginn notandi skráður inn" />
          </children>
       </AnchorPane>
    </top>
