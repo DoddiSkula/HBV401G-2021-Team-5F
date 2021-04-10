@@ -129,6 +129,7 @@ public class FlightUserController implements Initializable{
         passwordLabel.setOpacity(show);
         passwordTextField.setOpacity(show);
         passwordTextField.setText("");
+        modeButton.setOpacity(show);
         nameFieldLabel.setOpacity(0);
         nameTextField.setOpacity(0);
         nameTextField.setText("");
