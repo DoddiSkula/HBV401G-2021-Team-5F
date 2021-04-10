@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -14,7 +15,7 @@ public class Main extends Application {
         stage.setTitle("Flight search");
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        //stage.setScene(new Scene(root, 600, 400));
+        stage.getIcons().add(new Image("/images/plane.png"));
         stage.show();
     }
 
