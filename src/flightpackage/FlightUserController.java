@@ -9,6 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -74,6 +75,11 @@ public class FlightUserController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        user = ud.user;
+        if(user != null){
+            statusLabel.setText(ud.user.getName());
+            loginSuccess();
+        }
     }
 
     public Boolean register(String name, String email, String password) {
@@ -123,6 +129,7 @@ public class FlightUserController implements Initializable{
         passwordLabel.setOpacity(show);
         passwordTextField.setOpacity(show);
         passwordTextField.setText("");
+        modeButton.setOpacity(show);
         nameFieldLabel.setOpacity(0);
         nameTextField.setOpacity(0);
         nameTextField.setText("");
@@ -144,10 +151,20 @@ public class FlightUserController implements Initializable{
             if(login(email,password)){
                 loginSuccess();
             }
+            else{
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setContentText("Rangt netfang eða lykilorð");
+                a.show();
+            }
         }
         else if (mode == 1){
             if(register(name,email,password)){
                 loginSuccess();
+            }
+            else{
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setContentText("Netfang þegar á skrá");
+                a.show();
             }
         }
         else if(mode == 2){
