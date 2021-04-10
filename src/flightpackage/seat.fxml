@@ -14,7 +14,7 @@
    <top>
       <AnchorPane prefHeight="338.0" prefWidth="486.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="644.0" layoutY="469.0" mnemonicParsing="false" text="Confirm" />
+            <Button layoutX="644.0" layoutY="469.0" mnemonicParsing="false" onAction="#confirmButtonPushed" text="Confirm" />
             <Button layoutX="68.0" layoutY="469.0" mnemonicParsing="false" onAction="#backbuttonPushed" prefHeight="26.0" prefWidth="57.0" text="Back" />
             <GridPane fx:id="SeatGrid" gridLinesVisible="true" layoutX="270.0" layoutY="139.0" prefHeight="252.0" prefWidth="213.0">
               <columnConstraints>

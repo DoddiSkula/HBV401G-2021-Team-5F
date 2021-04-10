@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -70,20 +71,39 @@ public class FlightBookingController implements Initializable {
         window.setScene(tableViewScene);
         window.show();
     }
+    public void confirmButtonPushed(ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("Bookingdisplay.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+
+        //This line gets the Stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(tableViewScene);
+        window.show();
+    }
+    public void homeButtonPushed(ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("search.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+
+        //This line gets the Stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(tableViewScene);
+        window.show();
+    }
 
     @FXML
-    private void receiveData(MouseEvent event){
+    private void receiveData(ActionEvent event){
         Node node = (Node) event.getSource();
         Stage window = (Stage) node.getScene().getWindow();
 
         Flight u = (Flight) window.getUserData();
         FromDisplay.setText(u.getDepartureLocation());
+
     }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //receiveData();
+       // receiveData(changeScreenButtonPushed);
 
         //Flight fluginfo = searchController.getSelectedFlight();
         //FromDisplay.setText(fluginfo.getDepartureLocation());
