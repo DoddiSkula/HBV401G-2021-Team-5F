@@ -105,6 +105,11 @@ public class FlightSearchController implements Initializable {
             a.setContentText("No flight selected");
             a.show();
         }
+        else if(ud.user == null){
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText("Please log in to proceed with booking");
+            a.show();
+        }
         else {
             System.out.println(selectedFlight.getAirline());
 
