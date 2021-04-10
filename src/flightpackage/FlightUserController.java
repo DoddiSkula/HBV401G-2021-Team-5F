@@ -40,6 +40,7 @@ public class FlightUserController implements Initializable{
     @FXML
     private Label passwordLabel;
     public int mode = 0;
+    public UserData ud = UserData.getInstance();
 
 
     public void changeMode(ActionEvent event) throws IOException {
