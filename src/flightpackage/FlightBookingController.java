@@ -29,7 +29,7 @@ public class FlightBookingController implements Initializable {
     private FlightSearchController searchController = new FlightSearchController();
     private FlightUserController userController = new FlightUserController();
     private DataFactory dataFactory = new DataFactory();
-
+    public UserData ud = UserData.getInstance();
     private ObservableList<Booking> booking;
 
     // createBooking
@@ -97,21 +97,16 @@ public class FlightBookingController implements Initializable {
         Stage window = (Stage) node.getScene().getWindow();
 
         Flight u = (Flight) window.getUserData();
-        FromDisplay.setText(u.getDepartureLocation());
-        ToDisplay.setText(u.getArrivalLocation());
-        TimeDisplay.setText(u.getDepartureTime());
-        AirlineDisplay.setText(u.getAirline());
+
     }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        FromDisplay.setText(ud.flight.getDepartureLocation());
+        ToDisplay.setText(ud.flight.getArrivalLocation());
+        TimeDisplay.setText(ud.flight.getDepartureTime());
+        AirlineDisplay.setText(ud.flight.getAirline());
 
-        /*Event.fireEvent(node, new MouseEvent(MouseEvent.MOUSE_CLICKED, 0,
-                0, 0, 0, MouseButton.PRIMARY, 1, true, true, true, true,
-                true, true, true, true, true, true, null));*/
-       // FromDisplay.setText(u.getDepa)
-        //Flight fluginfo = searchController.getSelectedFlight();
-        //FromDisplay.setText(fluginfo.getDepartureLocation());
     }
 }

@@ -36,7 +36,7 @@ public class FlightSearchController implements Initializable {
     private final DataFactory dataFactory = new DataFactory();
     public ObservableList<Flight> flightList = FXCollections.observableArrayList();
     public Flight selectedFlight = null;
-
+    public UserData ud = UserData.getInstance();
     ObservableList<String> Departure_LocationsList = FXCollections.observableArrayList("","REY","EGS","AEY","IFJ","VEY","KEF");
     ObservableList<String> Arrival_LocationsList = FXCollections.observableArrayList("","REY","EGS","AEY","IFJ","VEY","KEF");
 
@@ -98,7 +98,7 @@ public class FlightSearchController implements Initializable {
     }
 
     public void bookingbuttonPushed(ActionEvent event) throws IOException {
-        getSelectedFlight();
+        ud.flight = getSelectedFlight();
 
         if(selectedFlight == null ) {
             Alert a = new Alert(Alert.AlertType.ERROR);
