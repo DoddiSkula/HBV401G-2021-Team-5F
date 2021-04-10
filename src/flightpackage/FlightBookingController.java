@@ -12,6 +12,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -25,6 +27,7 @@ import java.util.ResourceBundle;
 
 public class FlightBookingController implements Initializable {
     @FXML
+    public ImageView img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12;
     public Label FromDisplay,ToDisplay, TimeDisplay, AirlineDisplay ;
     private FlightSearchController searchController = new FlightSearchController();
     private FlightUserController userController = new FlightUserController();
@@ -99,6 +102,14 @@ public class FlightBookingController implements Initializable {
         ToDisplay.setText(ud.flight.getArrivalLocation());
         TimeDisplay.setText(ud.flight.getDepartureTime());
         AirlineDisplay.setText(ud.flight.getAirline());
+        Image image = new Image("/images/seat.png");
+        img1.setImage(image); img2.setImage(image); img3.setImage(image);
+        img4.setImage(image); img5.setImage(image); img6.setImage(image);
+        img7.setImage(image); img8.setImage(image); img9.setImage(image);
+        img10.setImage(image); img11.setImage(image); img12.setImage(image);
+
+        }
+
 
     }
-}
+
