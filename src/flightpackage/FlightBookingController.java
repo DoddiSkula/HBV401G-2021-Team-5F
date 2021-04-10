@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventTarget;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,7 +25,7 @@ import java.util.ResourceBundle;
 
 public class FlightBookingController implements Initializable {
     @FXML
-    public Label FromDisplay;
+    public Label FromDisplay,ToDisplay, TimeDisplay, AirlineDisplay ;
     private FlightSearchController searchController = new FlightSearchController();
     private FlightUserController userController = new FlightUserController();
     private DataFactory dataFactory = new DataFactory();
@@ -61,7 +62,7 @@ public class FlightBookingController implements Initializable {
 
         booking = createBooking(user, flight, seats);
     }
-
+    //takkavirkni til að loada scenes
     public void backbuttonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("search.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -91,20 +92,25 @@ public class FlightBookingController implements Initializable {
     }
 
     @FXML
-    private void receiveData(ActionEvent event){
+    public void displaybutton(ActionEvent event){
         Node node = (Node) event.getSource();
         Stage window = (Stage) node.getScene().getWindow();
 
         Flight u = (Flight) window.getUserData();
         FromDisplay.setText(u.getDepartureLocation());
-
+        ToDisplay.setText(u.getArrivalLocation());
+        TimeDisplay.setText(u.getDepartureTime());
+        AirlineDisplay.setText(u.getAirline());
     }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-       // receiveData(changeScreenButtonPushed);
 
+        /*Event.fireEvent(node, new MouseEvent(MouseEvent.MOUSE_CLICKED, 0,
+                0, 0, 0, MouseButton.PRIMARY, 1, true, true, true, true,
+                true, true, true, true, true, true, null));*/
+       // FromDisplay.setText(u.getDepa)
         //Flight fluginfo = searchController.getSelectedFlight();
         //FromDisplay.setText(fluginfo.getDepartureLocation());
     }
