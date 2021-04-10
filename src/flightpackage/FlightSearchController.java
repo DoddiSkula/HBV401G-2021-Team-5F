@@ -107,13 +107,16 @@ public class FlightSearchController implements Initializable {
         }
         else {
             System.out.println(selectedFlight.getAirline());
-            Parent tableViewParent = FXMLLoader.load(getClass().getResource("seat.fxml"));
-            Scene tableViewScene = new Scene(tableViewParent);
 
-            //This line gets the Stage information
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(tableViewScene);
-            window.show();
+
+                Parent tableViewParent = FXMLLoader.load(getClass().getResource("seat.fxml"));
+                Scene tableViewScene = new Scene(tableViewParent);
+
+                //This line gets the Stage information
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(tableViewScene);
+                window.setUserData(selectedFlight);
+                window.show();
         }
     }
 

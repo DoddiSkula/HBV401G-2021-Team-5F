@@ -117,6 +117,21 @@
                   <Font size="15.0" />
                </font>
             </Label>
+            <Label fx:id="ToDisplay" layoutX="298.0" layoutY="74.0" text="Label">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="TimeDisplay" layoutX="440.0" layoutY="74.0" text="Label">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="AirlineDisplay" layoutX="571.0" layoutY="74.0" text="Label">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </top>
