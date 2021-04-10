@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
 public class FlightUserController implements Initializable{
     private final DataFactory dataFactory = new DataFactory();
     private User user;
@@ -127,24 +128,26 @@ public class FlightUserController implements Initializable{
         nameTextField.setText("");
     }
 
+    public void loginSuccess(){
+        mode = 2;
+        hideOrShowLoginItems(0);
+        userButton.setText("Útskrá");
+        statusLabel.setText(getLoggedInUser().getName());
+        ud.user = getLoggedInUser();
+    }
+
     public void userButtonPressed(ActionEvent event) throws IOException {
         String email = emailTextField.getText();
         String password = passwordTextField.getText();
         String name = nameFieldLabel.getText();
         if(mode == 0){
             if(login(email,password)){
-                mode = 2;
-                hideOrShowLoginItems(0);
-                userButton.setText("Útskrá");
-                statusLabel.setText(getLoggedInUser().getName());
+                loginSuccess();
             }
         }
         else if (mode == 1){
             if(register(name,email,password)){
-                mode = 2;
-                hideOrShowLoginItems(0);
-                userButton.setText("Útskrá");
-                statusLabel.setText(getLoggedInUser().getName());
+                loginSuccess();
             }
         }
         else if(mode == 2){
@@ -153,6 +156,7 @@ public class FlightUserController implements Initializable{
             hideOrShowLoginItems(1);
             userButton.setText("Innskrá");
             statusLabel.setText("Enginn notandi skráður inn");
+            ud.user = null;
         }
     }
 
