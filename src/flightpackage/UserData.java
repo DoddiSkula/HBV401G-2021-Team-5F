@@ -7,11 +7,13 @@ class UserData {
     // variable of type String
     public User user;
     public Flight flight;
+    public Seat seat;
 
     // private constructor restricted to this class itself
     private UserData() {
         user = null;
         flight = null;
+        seat = null;
     }
 
     // static method to create instance of Singleton class
