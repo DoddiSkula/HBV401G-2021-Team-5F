@@ -12,7 +12,7 @@ public class DataFactory implements DataFactoryInterface {
     String DATABASE_URL;
 
     public DataFactory() {
-        File directory = new File("./src/database");
+        File directory = new File("./src/database"); // path í möppuna sem gagnagrunnurinn er geymdur í.
         try {
             DATABASE_URL = "jdbc:sqlite:" + directory.getCanonicalPath() + "/flight.db";
         } catch (IOException e) {
@@ -427,6 +427,12 @@ public class DataFactory implements DataFactoryInterface {
         return flights;
     }
 
+    /**
+     * Sækir flug eftir flugnúmeri.
+     *
+     * @param flight_id flugnúmer
+     * @return flugi
+     */
     public Flight getFlightbyID(int flight_id) {
         String id = Integer.toString(flight_id);
         Flight flight = null;
