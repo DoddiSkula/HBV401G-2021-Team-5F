@@ -1,19 +1,17 @@
 package flightpackage;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import javafx.scene.control.Button;
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,18 +19,13 @@ import java.util.ResourceBundle;
 
 
 public class FlightUserController implements Initializable{
-    @FXML private Button modeButton;
-    @FXML private Button userButton;
-    @FXML private Label nameFieldLabel;
-    @FXML private TextField nameTextField;
-    @FXML private TextField passwordTextField;
-    @FXML private TextField emailTextField;
-    @FXML private Label statusLabel;
-    @FXML private Label emailLabel;
-    @FXML private Label passwordLabel;
+    @FXML private Button modeButton, userButton;
+    @FXML private TextField nameTextField, passwordTextField, emailTextField;
+    @FXML private Label statusLabel, emailLabel, passwordLabel, nameFieldLabel;
+    @FXML private TableColumn arlineColumn, fromColumn, toColumn, dateColumn, departureTimeColumn, seatNumberColumn;
 
     private final DataFactory dataFactory = new DataFactory();
-    private User user;
+    public ObservableList<Booking> bookingsList = FXCollections.observableArrayList();
 
     public int mode = 0;
     public UserData ud = UserData.getInstance();
@@ -55,6 +48,8 @@ public class FlightUserController implements Initializable{
         }
     }
 
+
+
     public void changeScreenButtonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("search.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
@@ -67,8 +62,7 @@ public class FlightUserController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        user = ud.user;
-        if(user != null){
+        if(ud.user != null){
             statusLabel.setText(ud.user.getName());
             loginSuccess();
         }
@@ -80,7 +74,7 @@ public class FlightUserController implements Initializable{
             return false;
         }
 
-        user = dataFactory.createUser(name, email, password);
+        ud.user = dataFactory.createUser(name, email, password);
         return true;
     }
 
@@ -93,20 +87,24 @@ public class FlightUserController implements Initializable{
         if(checkUser == null || !checkUser.getPassword().equals(password)) {
             return false;
         }
-        user = checkUser;
+        ud.user = checkUser;
         return true;
     }
 
     public void logout() {
-        user = null;
+        mode = 0;
+        hideOrShowLoginItems(1);
+        userButton.setText("Innskrá");
+        statusLabel.setText("Enginn notandi skráður inn");
+        ud.user = null;
     }
 
     public User getLoggedInUser() {
-        if(user == null) {
+        if(ud.user == null) {
             System.out.println("No user logged in.");
             return null;
         }
-        return user;
+        return ud.user;
     }
 
     private ObservableList<User> getUser(String email) {
@@ -115,16 +113,25 @@ public class FlightUserController implements Initializable{
     }
 
     public void hideOrShowLoginItems(int show){
+        Boolean x;
+        if(show == 0){ x = true;
+        }
+        else{ x = false;
+        }
         emailLabel.setOpacity(show);
         emailTextField.setOpacity(show);
         emailTextField.setText("");
+        emailTextField.setDisable(x);
         passwordLabel.setOpacity(show);
         passwordTextField.setOpacity(show);
         passwordTextField.setText("");
+        passwordTextField.setDisable(x);
         modeButton.setOpacity(show);
+        modeButton.setDisable(x);
         nameFieldLabel.setOpacity(0);
         nameTextField.setOpacity(0);
         nameTextField.setText("");
+        nameTextField.setDisable(x);
     }
 
     public void loginSuccess(){
@@ -150,7 +157,12 @@ public class FlightUserController implements Initializable{
             }
         }
         else if (mode == 1){
-            if(register(name,email,password)){
+            if (nameTextField.getText() != "" || passwordTextField.getText() != "" || nameTextField.getText() != ""){
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setContentText("Vinsamlegast fyllið út í alla reiti");
+                a.show();
+            }
+            else if(register(name,email,password)){
                 loginSuccess();
             }
             else{
@@ -161,11 +173,6 @@ public class FlightUserController implements Initializable{
         }
         else if(mode == 2){
             logout();
-            mode = 0;
-            hideOrShowLoginItems(1);
-            userButton.setText("Innskrá");
-            statusLabel.setText("Enginn notandi skráður inn");
-            ud.user = null;
         }
     }
 

@@ -14,7 +14,7 @@
             <Label layoutX="83.0" layoutY="192.0" text="From:" />
             <Label layoutX="83.0" layoutY="228.0" text="To:" />
             <Label layoutX="83.0" layoutY="150.0" text="Airline:" />
-            <Label layoutX="83.0" layoutY="265.0" text="Seat:" />
+            <Label fx:id="seatsLabel" layoutX="83.0" layoutY="265.0" text="Seat:" />
             <Label fx:id="UserDisplay" layoutX="140.0" layoutY="75.0" prefHeight="17.0" prefWidth="163.0" />
             <Label fx:id="FlightDsiplay" layoutX="138.0" layoutY="114.0" prefHeight="17.0" prefWidth="163.0" />
             <Label fx:id="AirlineDisplay" layoutX="138.0" layoutY="150.0" prefHeight="17.0" prefWidth="163.0" />

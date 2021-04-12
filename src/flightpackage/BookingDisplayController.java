@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import static java.lang.Integer.parseInt;
@@ -19,7 +20,7 @@ import static java.lang.Integer.parseInt;
 public class BookingDisplayController  implements Initializable {
 
     @FXML
-    public Label UserDisplay, FlightDsiplay, AirlineDisplay, FromDisplay, ToDisplay, SeatDisplay;
+    public Label UserDisplay, FlightDsiplay, AirlineDisplay, FromDisplay, ToDisplay, SeatDisplay, seatsLabel;
 
     public UserData ud = UserData.getInstance();
     public void homeButtonPushed(ActionEvent event) throws IOException {
@@ -39,6 +40,11 @@ public class BookingDisplayController  implements Initializable {
         AirlineDisplay.setText(ud.flight.getAirline());
         FromDisplay.setText(ud.flight.getDepartureLocation());
         ToDisplay.setText(ud.flight.getArrivalLocation());
-        SeatDisplay.setText("græja þetta seinna");
+        SeatDisplay.setText(ud.seats.toString());
+        if(1 < ud.seats.size()){
+            seatsLabel.setText("Seats");
+        }
+        ud.seats = new ArrayList<Integer>();
+        ud.flight = null;
     }
 }
