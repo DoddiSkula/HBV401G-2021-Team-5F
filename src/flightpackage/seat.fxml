@@ -49,8 +49,8 @@
                   <ImageView fitHeight="34.0" fitWidth="34.0" layoutX="10.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                </children>
             </GridPane>
-            <Button layoutX="644.0" layoutY="469.0" mnemonicParsing="false" onAction="#confirmButtonPushed" text="Confirm" />
-            <Button layoutX="68.0" layoutY="469.0" mnemonicParsing="false" onAction="#backbuttonPushed" prefHeight="26.0" prefWidth="57.0" text="Back" />
+            <Button layoutX="622.0" layoutY="470.0" mnemonicParsing="false" onAction="#confirmButtonPushed" text="Staðfesta bókun" />
+            <Button layoutX="68.0" layoutY="469.0" mnemonicParsing="false" onAction="#backbuttonPushed" prefHeight="26.0" prefWidth="72.0" text="Aftur í leit" />
             <GridPane fx:id="SeatGrid" gridLinesVisible="true" layoutX="270.0" layoutY="139.0" prefHeight="252.0" prefWidth="213.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="114.0" minWidth="10.0" prefWidth="107.0" />

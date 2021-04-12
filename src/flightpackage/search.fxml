@@ -76,7 +76,7 @@
                   <TableColumn fx:id="MealTableView" prefWidth="107.0" style="-fx-alignment: CENTER;" text="Matur" />
               </columns>
             </TableView>
-            <Button fx:id="BookingButton" layoutX="683.0" layoutY="363.0" mnemonicParsing="false" onAction="#bookingbuttonPushed" text="Book" />
+            <Button fx:id="BookingButton" layoutX="652.0" layoutY="363.0" mnemonicParsing="false" onAction="#bookingbuttonPushed" text="Velja sæti" />
          </children>
       </AnchorPane>
    </center>
