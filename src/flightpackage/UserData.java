@@ -10,12 +10,14 @@ class UserData {
     public User user;
     public Flight flight;
     public ArrayList<Integer> seats;
+    public int price;
 
     // private constructor restricted to this class itself
     private UserData() {
         user = null;
         flight = null;
         seats = new ArrayList<Integer>();
+        price = 0;
     }
 
     // static method to create instance of Singleton class
