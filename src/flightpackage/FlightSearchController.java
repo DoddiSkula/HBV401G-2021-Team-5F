@@ -18,8 +18,7 @@ import java.util.ResourceBundle;
 
 public class FlightSearchController implements Initializable {
     @FXML public TableView<Flight> fligthsListViews;
-    @FXML private ChoiceBox departureLocationBox;
-    @FXML private ChoiceBox arrivalLocationBox;
+    @FXML private ChoiceBox departureLocationBox, arrivalLocationBox;
     @FXML private CheckBox mealService;
     @FXML private DatePicker flightDatePicker;
     @FXML private TableColumn<Flight, Integer> IdTableView;
@@ -116,9 +115,6 @@ public class FlightSearchController implements Initializable {
             a.show();
         }
         else {
-            System.out.println(selectedFlight.getAirline());
-
-
                 Parent tableViewParent = FXMLLoader.load(getClass().getResource("seat.fxml"));
                 Scene tableViewScene = new Scene(tableViewParent);
 
@@ -148,9 +144,3 @@ public class FlightSearchController implements Initializable {
         }
     }
 }
-
-
-
-
-
-
