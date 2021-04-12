@@ -9,12 +9,12 @@
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="83.0" layoutY="72.0" prefHeight="22.0" prefWidth="37.0" text="User:" />
-            <Label layoutX="83.0" layoutY="114.0" text="Flight:" />
-            <Label layoutX="83.0" layoutY="192.0" text="From:" />
-            <Label layoutX="83.0" layoutY="228.0" text="To:" />
-            <Label layoutX="83.0" layoutY="150.0" text="Airline:" />
-            <Label fx:id="seatsLabel" layoutX="83.0" layoutY="265.0" text="Seat:" />
+            <Label layoutX="83.0" layoutY="72.0" prefHeight="22.0" prefWidth="37.0" text="Nafn:" />
+            <Label layoutX="83.0" layoutY="114.0" text="Flug:" />
+            <Label layoutX="83.0" layoutY="192.0" text="Frá:" />
+            <Label layoutX="83.0" layoutY="228.0" text="Til:" />
+            <Label layoutX="83.0" layoutY="150.0" text="Félag:" />
+            <Label fx:id="seatsLabel" layoutX="83.0" layoutY="265.0" text="Sæti:" />
             <Label fx:id="UserDisplay" layoutX="138.0" layoutY="75.0" prefHeight="17.0" prefWidth="163.0" />
             <Label fx:id="FlightDsiplay" layoutX="138.0" layoutY="114.0" prefHeight="17.0" prefWidth="163.0" />
             <Label fx:id="AirlineDisplay" layoutX="138.0" layoutY="150.0" prefHeight="17.0" prefWidth="163.0" />
@@ -24,6 +24,7 @@
             <Button layoutX="39.0" layoutY="354.0" mnemonicParsing="false" onAction="#homeButtonPushed" text="Home" />
             <Label layoutX="82.0" layoutY="298.0" text="Verð:" />
             <Label fx:id="PriceDisplay" layoutX="138.0" layoutY="298.0" prefHeight="17.0" prefWidth="156.0" />
+            <Label layoutX="110.0" layoutY="28.0" prefHeight="22.0" prefWidth="418.0" text="Til hamingju! Bókunin þín er klár. Því miður tökum við ekki við ferðagjöfinni ;)" />
          </children>
       </AnchorPane>
    </left>

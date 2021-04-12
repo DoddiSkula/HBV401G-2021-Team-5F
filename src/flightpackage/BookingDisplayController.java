@@ -42,10 +42,8 @@ public class BookingDisplayController  implements Initializable {
         ToDisplay.setText(ud.flight.getArrivalLocation());
         SeatDisplay.setText(ud.seats.toString());
         PriceDisplay.setText((ud.price) + " kr.");
-        if(1 < ud.seats.size()){
-            seatsLabel.setText("Seats");
-        }
         ud.seats = new ArrayList<Integer>();
         ud.flight = null;
+        ud.price = 0;
     }
 }

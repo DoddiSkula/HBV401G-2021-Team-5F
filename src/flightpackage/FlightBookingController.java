@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -54,31 +55,56 @@ public class FlightBookingController implements Initializable {
 
     // bóka flug takki
     public void confirmButtonPushed(ActionEvent event) throws IOException {
+        if (anyChecked()){
+            ObservableList<Node> children = SeatGrid.getChildren();
+            for (Node child : children) {
+                if (child instanceof CheckBox) {
+                    CheckBox checkBox = (CheckBox) child;
+                    if (checkBox.isSelected()) {
+                        ud.seats.add(parseInt(checkBox.getText()));
+                    }
+                }
+            }
+            createBooking(ud.user, ud.flight, ud.seats);
+
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("Bookingdisplay.fxml"));
+            Scene tableViewScene = new Scene(tableViewParent);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(tableViewScene);
+            window.show();
+        }
+        else{
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText("Ekkert sæti valið");
+            a.show();
+        }
+    }
+
+    public Boolean anyChecked(){
         ObservableList<Node> children = SeatGrid.getChildren();
-        for (Node child : children) {
-            if (child instanceof CheckBox) {
-                CheckBox checkBox = (CheckBox) child;
-                if (checkBox.isSelected()) {
-                    ud.seats.add(parseInt(checkBox.getText()));
+        int i = 0;
+        for (Node bobbi : children){
+            i++;
+            if (bobbi instanceof CheckBox) {
+                CheckBox checkBox = (CheckBox) bobbi;
+                int b = parseInt(checkBox.getText());
+                Seat saeticheck = dataFactory.getSeat(ud.flight.getId(), i);
+                if (b == saeticheck.getSeatID()) {
+                    if (checkBox.isSelected()) {
+                        return true;
+                    }
                 }
             }
         }
-
-        createBooking(ud.user, ud.flight, ud.seats);
-
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("Bookingdisplay.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(tableViewScene);
-        window.show();
+        return false;
     }
 
     @FXML
     public void priceUpdater(ActionEvent event) {
         ObservableList<Node> children = SeatGrid.getChildren();
-        //int flightprice = ud.flight.getPrice();
+        int flightprice = ud.flight.getPrice();
         int i = 0;
-        //int price = 0;
+        int price = 0;
         for (Node bobbi : children) {
             i++;
             if (bobbi instanceof CheckBox) {
@@ -88,33 +114,18 @@ public class FlightBookingController implements Initializable {
                 if (b == saeticheck.getSeatID()) {
                     if (checkBox.isSelected()) {
                         if (saeticheck.isFirstClass()) {
-                            ud.price += flightprice + 2000;
-                            PriceDisplay.setText((ud.price) + " kr.");
+                            price += flightprice + 2000;
                         } else if (saeticheck.isEmergency()) {
-                            ud.price += flightprice + 500;
-                            PriceDisplay.setText((ud.price) + " kr.");
+                            price += flightprice + 500;
                         } else {
-                            ud.price += flightprice;
-                            PriceDisplay.setText((ud.price) + " kr.");
-                        }
-                    }
-                }
-                if( b== saeticheck.getSeatID() && checkBox.isSelected()){
-                    if(!checkBox.isSelected()) {
-                        if (saeticheck.isFirstClass()) {
-                            ud.price -= (flightprice + 2000);
-                            PriceDisplay.setText((ud.price) + " kr.");
-                        } else if (saeticheck.isEmergency()) {
-                            ud.price -= (flightprice + 500);
-                            PriceDisplay.setText((ud.price) + " kr.");
-                        } else {
-                            ud.price -= (flightprice);
-                            PriceDisplay.setText((ud.price) + " kr.");
+                            price += flightprice;
                         }
                     }
                 }
             }
         }
+        ud.price = price;
+        PriceDisplay.setText((ud.price) + " kr.");
     }
 
     @Override
