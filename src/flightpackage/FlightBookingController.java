@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
@@ -23,8 +24,7 @@ import static java.lang.Integer.parseInt;
 
 public class FlightBookingController implements Initializable {
     @FXML public GridPane SeatGrid, GridImage;
-    public ImageView img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12;
-    public Label FromDisplay,ToDisplay, TimeDisplay, AirlineDisplay;
+    public Label FromDisplay,ToDisplay, TimeDisplay, AirlineDisplay, DateDisplay, PriceDisplay;
 
     private DataFactory dataFactory = new DataFactory();
     public UserData ud = UserData.getInstance();
@@ -74,10 +74,34 @@ public class FlightBookingController implements Initializable {
     }
 
     @FXML
-    public void displaybutton(ActionEvent event){
-        Node node = (Node) event.getSource();
-        Stage window = (Stage) node.getScene().getWindow();
-        Flight u = (Flight) window.getUserData();
+    public void priceUpdater(ActionEvent event) {
+        ObservableList<Node> children = SeatGrid.getChildren();
+        int flightprice = ud.flight.getPrice();
+        int price = 0;
+        int i = 0;
+        boolean allcheck = true;
+        for (Node bobbi : children) {
+            i++;
+            if (bobbi instanceof CheckBox) {
+                CheckBox checkBox = (CheckBox) bobbi;
+                int b = parseInt(checkBox.getText());
+                Seat saeticheck = dataFactory.getSeat(ud.flight.getId(), i);
+                if (b == saeticheck.getSeatID()) {
+                    if (checkBox.isSelected()) {
+                        if (saeticheck.isFirstClass()) {
+                            price += flightprice + 2000;
+                            PriceDisplay.setText((price) + " kr.");
+                        } else if (saeticheck.isEmergency()) {
+                            price += flightprice + 500;
+                            PriceDisplay.setText((price) + " kr.");
+                        } else {
+                            price += flightprice;
+                            PriceDisplay.setText((price) + " kr.");
+                        }
+                    }
+                }
+            }
+        }
     }
 
     @Override
@@ -86,6 +110,9 @@ public class FlightBookingController implements Initializable {
         ToDisplay.setText(ud.flight.getArrivalLocation());
         TimeDisplay.setText(ud.flight.getDepartureTime());
         AirlineDisplay.setText(ud.flight.getAirline());
+        DateDisplay.setText(ud.flight.getFlightDate());
+        PriceDisplay.setText("0 kr.");
+        PriceDisplay.setTextAlignment(TextAlignment.CENTER);
 
         Image seat = new Image("/images/seat.png");
         Image firstclass = new Image("/images/firstclass.png");
@@ -122,7 +149,7 @@ public class FlightBookingController implements Initializable {
                         checkBox.setOpacity(0.3);
                         checkBox.setDisable(true);
                     }
-                }
+                                    }
             }
         }
     }
