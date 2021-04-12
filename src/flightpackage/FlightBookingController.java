@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 import static java.lang.Integer.parseInt;
 
 public class FlightBookingController implements Initializable {
-    @FXML public GridPane SeatGrid;
+    @FXML public GridPane SeatGrid, GridImage;
     public ImageView img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12;
     public Label FromDisplay,ToDisplay, TimeDisplay, AirlineDisplay;
 
@@ -91,22 +91,34 @@ public class FlightBookingController implements Initializable {
         Image firstclass = new Image("/images/firstclass.png");
         Image emergency = new Image("/images/emergency.png");
 
-        img1.setImage(firstclass); img2.setImage(firstclass); img3.setImage(firstclass);
-        img4.setImage(firstclass); img5.setImage(seat); img6.setImage(seat);
-        img7.setImage(seat); img8.setImage(seat); img9.setImage(emergency);
-        img10.setImage(seat); img11.setImage(seat); img12.setImage(emergency);
-
-        //initializea sætisglugga
+      //initializea sætisglugga
         ObservableList<Node> children = SeatGrid.getChildren();
+        ObservableList<Node> myndir = GridImage.getChildren();
         int i = 0;
-        for (Node child : children){
+        int x = 0;
+        for(Node child : myndir){
             i++;
-            if(child instanceof CheckBox) {
-                CheckBox checkBox = (CheckBox) child;
-                int b = parseInt(checkBox.getText());
+            if (child instanceof ImageView){
+                ImageView imageView = (ImageView) child;
                 Seat saeti = dataFactory.getSeat(ud.flight.getId(), i);
-                if(b == saeti.getSeatID()){
-                    if(!saeti.isAvailable()){
+                if(saeti.isEmergency()){
+                    imageView.setImage(emergency);
+                }
+                else if(saeti.isFirstClass()){
+                    imageView.setImage(firstclass);
+                }
+                else imageView.setImage(seat);
+
+            }
+        }
+        for (Node bobbi : children){
+            x++;
+            if(bobbi instanceof CheckBox) {
+                CheckBox checkBox = (CheckBox) bobbi;
+                int b = parseInt(checkBox.getText());
+                Seat saeticheck = dataFactory.getSeat(ud.flight.getId(), x);
+                if(b == saeticheck.getSeatID()){
+                    if(!saeticheck.isAvailable()){
                         checkBox.setOpacity(0.3);
                         checkBox.setDisable(true);
                     }
