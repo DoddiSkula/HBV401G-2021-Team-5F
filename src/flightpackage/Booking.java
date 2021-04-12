@@ -32,6 +32,18 @@ public class Booking {
         return seat;
     }
 
+    public int getPrice(){
+        int rval = 0;
+        rval += flight.getPrice();
+        if(seat.isEmergency()){
+            rval += 500;
+        }
+        if(seat.isFirstClass()){
+            rval += 2000;
+        }
+        return rval;
+    }
+
     public void setSeat(Seat seat) {
         this.seat = seat;
     }
