@@ -327,7 +327,6 @@ public class DataFactory implements DataFactoryInterface {
     public void reserveSeat(int flight_id, int seatID, boolean isAvailable) {
         String flightId = Integer.toString(flight_id);
         String seatId = Integer.toString(seatID);
-        String availability = Boolean.toString(isAvailable);
 
         String query = "UPDATE seats SET isAvailable = ? WHERE flight_id = ? AND seatID = ?";
 
@@ -337,7 +336,7 @@ public class DataFactory implements DataFactoryInterface {
             // create a database connection
             connection = DriverManager.getConnection(DATABASE_URL);
             PreparedStatement pstmt = connection.prepareStatement(query);
-            pstmt.setString(1, availability);
+            pstmt.setBoolean(1, isAvailable);
             pstmt.setString(2, flightId);
             pstmt.setString(3, seatId);
             pstmt.executeUpdate();

@@ -131,7 +131,6 @@ public class FlightSearchController implements Initializable {
         }
     }
 
-
     @FXML
     private void searchHandler(ActionEvent e) {
         String date = flightDatePicker.getValue() == null ? "" : flightDatePicker.getValue().toString();
@@ -149,8 +148,6 @@ public class FlightSearchController implements Initializable {
             System.out.println(flight);
         }
     }
-
-
 }
 
 

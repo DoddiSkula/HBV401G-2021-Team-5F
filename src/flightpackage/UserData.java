@@ -1,5 +1,7 @@
 package flightpackage;
 
+import java.util.ArrayList;
+
 class UserData {
     // static variable single_instance of type Singleton
     private static UserData single_instance = null;
@@ -7,13 +9,13 @@ class UserData {
     // variable of type String
     public User user;
     public Flight flight;
-    public int[] seat;
+    public ArrayList<Integer> seats;
 
     // private constructor restricted to this class itself
     private UserData() {
         user = null;
         flight = null;
-        seat = null;
+        seats = new ArrayList<Integer>();
     }
 
     // static method to create instance of Singleton class

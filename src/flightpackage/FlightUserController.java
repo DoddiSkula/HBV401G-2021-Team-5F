@@ -21,26 +21,19 @@ import java.util.ResourceBundle;
 
 
 public class FlightUserController implements Initializable{
+    @FXML private Button modeButton;
+    @FXML private Button userButton;
+    @FXML private Label nameFieldLabel;
+    @FXML private TextField nameTextField;
+    @FXML private TextField passwordTextField;
+    @FXML private TextField emailTextField;
+    @FXML private Label statusLabel;
+    @FXML private Label emailLabel;
+    @FXML private Label passwordLabel;
+
     private final DataFactory dataFactory = new DataFactory();
     private User user;
-    @FXML
-    private Button modeButton;
-    @FXML
-    private Button userButton;
-    @FXML
-    private Label nameFieldLabel;
-    @FXML
-    private TextField nameTextField;
-    @FXML
-    private TextField passwordTextField;
-    @FXML
-    private TextField emailTextField;
-    @FXML
-    private Label statusLabel;
-    @FXML
-    private Label emailLabel;
-    @FXML
-    private Label passwordLabel;
+
     public int mode = 0;
     public UserData ud = UserData.getInstance();
 
@@ -62,8 +55,7 @@ public class FlightUserController implements Initializable{
         }
     }
 
-    public void changeScreenButtonPushed(ActionEvent event) throws IOException
-    {
+    public void changeScreenButtonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("search.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 
@@ -185,5 +177,4 @@ public class FlightUserController implements Initializable{
         User testUser = userController.getLoggedInUser();
         System.out.println(testUser);
     }
-
 }
