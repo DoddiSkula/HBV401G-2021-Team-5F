@@ -99,13 +99,6 @@ public class FlightUserController implements Initializable{
         ud.user = null;
     }
 
-    public User getLoggedInUser() {
-        if(ud.user == null) {
-            System.out.println("No user logged in.");
-            return null;
-        }
-        return ud.user;
-    }
 
     private ObservableList<User> getUser(String email) {
         String mail = email == null || email.equals("") ? "%" : email;
@@ -138,8 +131,7 @@ public class FlightUserController implements Initializable{
         mode = 2;
         hideOrShowLoginItems(0);
         userButton.setText("Útskrá");
-        statusLabel.setText(getLoggedInUser().getName());
-        ud.user = getLoggedInUser();
+        statusLabel.setText(ud.user.getName());
     }
 
     public void userButtonPressed(ActionEvent event) throws IOException {
@@ -147,7 +139,12 @@ public class FlightUserController implements Initializable{
         String password = passwordTextField.getText();
         String name = nameTextField.getText();
         if(mode == 0){
-            if(login(email,password)){
+            if (emailTextField.getText().length() == 0 || passwordTextField.getText().length() == 0) {
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setContentText("Vinsamlegast fyllið út í alla reiti");
+                a.show();
+            }
+            else if(login(email,password)){
                 loginSuccess();
             }
             else{
@@ -157,7 +154,7 @@ public class FlightUserController implements Initializable{
             }
         }
         else if (mode == 1){
-            if (nameTextField.getText() != "" || passwordTextField.getText() != "" || nameTextField.getText() != ""){
+            if (nameTextField.getText().length() == 0 || passwordTextField.getText().length() == 0 || nameTextField.getText().length() == 0){
                 Alert a = new Alert(Alert.AlertType.ERROR);
                 a.setContentText("Vinsamlegast fyllið út í alla reiti");
                 a.show();
@@ -180,8 +177,5 @@ public class FlightUserController implements Initializable{
         FlightUserController userController = new FlightUserController();
 
         System.out.println(userController.login("", ""));
-
-        User testUser = userController.getLoggedInUser();
-        System.out.println(testUser);
     }
 }
