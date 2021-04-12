@@ -88,6 +88,17 @@ public class FlightBookingController implements Initializable {
         window.show();
     }
     public void confirmButtonPushed(ActionEvent event) throws IOException {
+        ObservableList<Node> children = SeatGrid.getChildren();
+        int i = 0;
+        for (Node child : children) {
+            i++;
+            if (child instanceof CheckBox) {
+                CheckBox checkBox = (CheckBox) child;
+                if (checkBox.isSelected()) {
+
+                }
+            }
+        }
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("Bookingdisplay.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
 
@@ -122,9 +133,11 @@ public class FlightBookingController implements Initializable {
         img7.setImage(seat); img8.setImage(seat); img9.setImage(emergency);
         img10.setImage(seat); img11.setImage(seat); img12.setImage(emergency);
         System.out.println(getSeats(ud.flight.getId()));
+        //initializea sætisglugga
         ObservableList<Node> children = SeatGrid.getChildren();
-        int i = 1;
+        int i = 0;
         for (Node child : children){
+            i++;
             if(child instanceof CheckBox) {
                 CheckBox checkBox = (CheckBox) child;
                 int b = parseInt(checkBox.getText());
@@ -136,9 +149,12 @@ public class FlightBookingController implements Initializable {
                     }
 
 
+                        }
+
+
                 }
             }
-            i++;
+
 
 
         }
