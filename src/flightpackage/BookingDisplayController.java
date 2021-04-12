@@ -20,7 +20,7 @@ import static java.lang.Integer.parseInt;
 public class BookingDisplayController  implements Initializable {
 
     @FXML
-    public Label UserDisplay, FlightDsiplay, AirlineDisplay, FromDisplay, ToDisplay, SeatDisplay, seatsLabel;
+    public Label UserDisplay, FlightDsiplay, AirlineDisplay, FromDisplay, ToDisplay, SeatDisplay, seatsLabel,PriceDisplay;
 
     public UserData ud = UserData.getInstance();
     public void homeButtonPushed(ActionEvent event) throws IOException {
@@ -41,6 +41,7 @@ public class BookingDisplayController  implements Initializable {
         FromDisplay.setText(ud.flight.getDepartureLocation());
         ToDisplay.setText(ud.flight.getArrivalLocation());
         SeatDisplay.setText(ud.seats.toString());
+        PriceDisplay.setText((ud.price) + " kr.");
         if(1 < ud.seats.size()){
             seatsLabel.setText("Seats");
         }

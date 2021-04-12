@@ -76,10 +76,9 @@ public class FlightBookingController implements Initializable {
     @FXML
     public void priceUpdater(ActionEvent event) {
         ObservableList<Node> children = SeatGrid.getChildren();
-        int flightprice = ud.flight.getPrice();
-        int price = 0;
+        //int flightprice = ud.flight.getPrice();
         int i = 0;
-        boolean allcheck = true;
+        //int price = 0;
         for (Node bobbi : children) {
             i++;
             if (bobbi instanceof CheckBox) {
@@ -89,14 +88,28 @@ public class FlightBookingController implements Initializable {
                 if (b == saeticheck.getSeatID()) {
                     if (checkBox.isSelected()) {
                         if (saeticheck.isFirstClass()) {
-                            price += flightprice + 2000;
-                            PriceDisplay.setText((price) + " kr.");
+                            ud.price += flightprice + 2000;
+                            PriceDisplay.setText((ud.price) + " kr.");
                         } else if (saeticheck.isEmergency()) {
-                            price += flightprice + 500;
-                            PriceDisplay.setText((price) + " kr.");
+                            ud.price += flightprice + 500;
+                            PriceDisplay.setText((ud.price) + " kr.");
                         } else {
-                            price += flightprice;
-                            PriceDisplay.setText((price) + " kr.");
+                            ud.price += flightprice;
+                            PriceDisplay.setText((ud.price) + " kr.");
+                        }
+                    }
+                }
+                if( b== saeticheck.getSeatID() && checkBox.isSelected()){
+                    if(!checkBox.isSelected()) {
+                        if (saeticheck.isFirstClass()) {
+                            ud.price -= (flightprice + 2000);
+                            PriceDisplay.setText((ud.price) + " kr.");
+                        } else if (saeticheck.isEmergency()) {
+                            ud.price -= (flightprice + 500);
+                            PriceDisplay.setText((ud.price) + " kr.");
+                        } else {
+                            ud.price -= (flightprice);
+                            PriceDisplay.setText((ud.price) + " kr.");
                         }
                     }
                 }
