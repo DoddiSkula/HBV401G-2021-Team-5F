@@ -21,10 +21,11 @@
             <Label fx:id="FromDisplay" layoutX="138.0" layoutY="192.0" prefHeight="17.0" prefWidth="163.0" />
             <Label fx:id="ToDisplay" layoutX="140.0" layoutY="228.0" prefHeight="17.0" prefWidth="163.0" />
             <Label fx:id="SeatDisplay" layoutX="140.0" layoutY="265.0" prefHeight="17.0" prefWidth="163.0" />
-            <Button layoutX="39.0" layoutY="354.0" mnemonicParsing="false" onAction="#homeButtonPushed" text="Home" />
+            <Button layoutX="330.0" layoutY="350.0" mnemonicParsing="false" onAction="#homeButtonPushed" text="Aftur í leit" />
             <Label layoutX="82.0" layoutY="298.0" text="Verð:" />
             <Label fx:id="PriceDisplay" layoutX="138.0" layoutY="298.0" prefHeight="17.0" prefWidth="156.0" />
-            <Label layoutX="110.0" layoutY="28.0" prefHeight="22.0" prefWidth="418.0" text="Til hamingju! Bókunin þín er klár. Því miður tökum við ekki við ferðagjöfinni ;)" />
+            <Label layoutX="102.0" layoutY="28.0" prefHeight="22.0" prefWidth="418.0" text="Til hamingju! Bókunin þín er klár. Því miður tökum við ekki við ferðagjöfinni ;)" />
+            <Button layoutX="203.0" layoutY="350.0" mnemonicParsing="false" onAction="#userButtonPushed" text="Mínar bókanir" />
          </children>
       </AnchorPane>
    </left>
