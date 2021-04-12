@@ -123,24 +123,25 @@ public class FlightBookingController implements Initializable {
         img10.setImage(seat); img11.setImage(seat); img12.setImage(emergency);
         System.out.println(getSeats(ud.flight.getId()));
         ObservableList<Node> children = SeatGrid.getChildren();
-       /* for (Node child : children){
+        int i = 1;
+        for (Node child : children){
             if(child instanceof CheckBox) {
                 CheckBox checkBox = (CheckBox) child;
                 int b = parseInt(checkBox.getText());
-                for(int i = 0; i <12;i++){
-                    if(b == ud.seat.getSeatID()+i){
-                        if(!ud.seat.isAvailable()){
+                    Seat saeti = dataFactory.getSeat(ud.flight.getId(), i);
+                    if(b == saeti.getSeatID()){
+                        if(!saeti.isAvailable()){
                             checkBox.setOpacity(0.3);
                             checkBox.setDisable(true);
-                        }
                     }
 
 
                 }
             }
+            i++;
 
 
-        }*/
+        }
         }
 
 
