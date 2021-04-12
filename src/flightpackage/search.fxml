@@ -63,17 +63,17 @@
    <center>
       <AnchorPane prefHeight="384.0" prefWidth="756.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="fligthsListViews" layoutX="16.0" layoutY="-10.0" prefHeight="367.0" prefWidth="727.0">
+            <TableView fx:id="fligthsListViews" layoutX="16.0" layoutY="-10.0" prefHeight="367.0" prefWidth="721.0">
               <columns>
                 <TableColumn fx:id="IdTableView" prefWidth="30.0" style="-fx-alignment: CENTER;" text="ID" />
                 <TableColumn fx:id="DepartureTableView" prefWidth="66.0" style="-fx-alignment: CENTER;" text="Frá" />
                   <TableColumn fx:id="ArrivalTableView" prefWidth="61.0" style="-fx-alignment: CENTER;" text="Til" />
                   <TableColumn fx:id="DepartureTimeTableView" prefWidth="85.0" style="-fx-alignment: CENTER;" text="Brottför" />
-                  <TableColumn fx:id="ArrivalTimeTableView" prefWidth="85.0" style="-fx-alignment: CENTER;" text="Koma" />
-                  <TableColumn fx:id="DateTableView" prefWidth="86.0" style="-fx-alignment: CENTER;" text="Dagur" />
-                  <TableColumn fx:id="PriceTableView" prefWidth="90.0" style="-fx-padding: 0 0 0 10;" text="Verð" />
-                  <TableColumn fx:id="AirlineTableView" prefWidth="138.0" text="Flugfélag" />
-                  <TableColumn fx:id="MealTableView" prefWidth="76.0" style="-fx-alignment: CENTER;" text="Matur" />
+                  <TableColumn fx:id="ArrivalTimeTableView" prefWidth="70.0" style="-fx-alignment: CENTER;" text="Koma" />
+                  <TableColumn fx:id="DateTableView" prefWidth="94.0" style="-fx-alignment: CENTER;" text="Dagur" />
+                  <TableColumn fx:id="PriceTableView" prefWidth="82.0" style="-fx-padding: 0 0 0 10;" text="Verð" />
+                  <TableColumn fx:id="AirlineTableView" prefWidth="125.0" text="Flugfélag" />
+                  <TableColumn fx:id="MealTableView" prefWidth="107.0" style="-fx-alignment: CENTER;" text="Matur" />
               </columns>
             </TableView>
             <Button fx:id="BookingButton" layoutX="683.0" layoutY="363.0" mnemonicParsing="false" onAction="#bookingbuttonPushed" text="Book" />
