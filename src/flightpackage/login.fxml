@@ -26,13 +26,13 @@
                         <TableView fx:id="bookingsView" layoutX="-1.0" prefHeight="172.0" prefWidth="429.0">
                           <columns>
                             <TableColumn fx:id="airlineColumn" prefWidth="107.0" text="Flugélag" />
-                            <TableColumn fx:id="fromColumn" minWidth="3.0" prefWidth="31.0" text="Frá" />
-                              <TableColumn fx:id="toColumn" prefWidth="28.0" text="Til" />
-                              <TableColumn fx:id="dateColumn" prefWidth="71.0" text="Dags." />
-                              <TableColumn fx:id="departureTimeColumn" prefWidth="50.0" text="Brottför" />
-                              <TableColumn fx:id="arrivalTimeColumn" prefWidth="40.0" text="Koma" />
-                              <TableColumn fx:id="seatNumberColumn" prefWidth="35.0" text="Sæti" />
-                              <TableColumn fx:id="foodColumn" prefWidth="39.0" text="Matur" />
+                            <TableColumn fx:id="fromColumn" minWidth="3.0" prefWidth="38.0" text="Frá" />
+                              <TableColumn fx:id="toColumn" prefWidth="37.0" text="Til" />
+                              <TableColumn fx:id="dateColumn" prefWidth="76.0" text="Dags." />
+                              <TableColumn fx:id="departureTimeColumn" prefWidth="43.0" text="Brottför" />
+                              <TableColumn fx:id="arrivalTimeColumn" prefWidth="44.0" text="Koma" />
+                              <TableColumn fx:id="seatNumberColumn" prefWidth="34.0" text="Sæti" />
+                              <TableColumn fx:id="foodColumn" prefWidth="48.0" text="Matur" />
                           </columns>
                         </TableView>
                      </children>
