@@ -185,7 +185,7 @@
             <Label layoutX="83.0" layoutY="155.0" text="Almennt" />
             <Label layoutX="83.0" layoutY="195.0" text="Fyrsta Farými" />
             <Label layoutX="83.0" layoutY="240.0" text="Neyðarútgangur" />
-            <Label layoutX="277.0" layoutY="52.0" text="Dagsettning:">
+            <Label layoutX="277.0" layoutY="52.0" text="Dagsetning:">
                <font>
                   <Font size="15.0" />
                </font>
